@@ -3,9 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_callback.xml" value="0.15" />
+        <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_callback.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_logout.xml" value="0.1524822695035461" />
+        <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_logout.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_main.xml" value="0.15121580547112462" />
       </map>
     </option>

@@ -64,6 +64,14 @@
                 <data android:scheme="mobilesmpb33ab97c-b33ab97c" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".LogoutActivity" android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <data android:scheme="mobilesmpb33ab97c-b33ab97c" android:host="logout" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

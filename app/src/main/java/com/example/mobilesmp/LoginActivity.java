@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.HostedUIOptions;
+import com.amazonaws.mobile.client.IdentityProvider;
+import com.amazonaws.mobile.client.SignInUIOptions;
+import com.amazonaws.mobile.client.UserStateDetails;
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.result.AuthSignInResult;
@@ -37,6 +43,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void onPressFacebookLogin(View view) {
+//// For Facebook
+//        HostedUIOptions hostedUIOptions = HostedUIOptions.builder()
+//                .scopes("openid", "email")
+//                .identityProvider("Facebook")
+//                .build();
+//
+//        SignInUIOptions signInUIOptions = SignInUIOptions.builder()
+//                .hostedUIOptions(hostedUIOptions)
+//                .build();
+//// 'this' refers to the current active Activity
+//        AWSMobileClient.getInstance().showSignIn(this, signInUIOptions, new Callback<UserStateDetails>() {
+//            @Override
+//            public void onResult(UserStateDetails details) {
+//                Log.d("FB LOGIN", "onResult: " + details.getUserState());
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//                Log.e("FB LOGIN", "onError: ", e);
+//            }
+//        });
         Amplify.Auth.signInWithSocialWebUI(
                 AuthProvider.facebook(),
                 this,
@@ -64,7 +91,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginSuccess(AuthSignInResult authSignInResult) {
-        //Go to the chat screen
+        Log.d("LOGIN", "State: Success");
+        //Go to the callback screen
         Intent intent = new Intent(this, CallbackActivity.class);
         startActivity(intent);
     }
