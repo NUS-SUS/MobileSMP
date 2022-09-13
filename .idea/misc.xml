@@ -7,6 +7,30 @@
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_logout.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_main.xml" value="0.15121580547112462" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_callback.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_discover.xml" value="0.25" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_feedback.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_login.xml" value="0.24003623188405798" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_logout.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_main.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_profile.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/app_bar_home.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/content_campaign.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/content_discover.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/content_feedback.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/content_home.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/content_profile.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_discover.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_feedback.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_gallery.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_home.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_profile.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_second2.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_slideshow.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/nav_header_home.xml" value="0.2864583333333333" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/menu/home.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>
