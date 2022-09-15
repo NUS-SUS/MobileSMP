@@ -26,29 +26,19 @@
         android:theme="@style/Theme.MobileSMP"
         tools:targetApi="31">
         <activity
-            android:name=".FeedbackActivity"
-            android:exported="false"
-            android:label="@string/title_activity_feedback"
-            android:theme="@style/Theme.MobileSMP.NoActionBar" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.MobileSMP.NoActionBar" />
-        <activity
-            android:name=".CampaignActivity"
+            android:name=".ui.campaign.Campaign"
             android:exported="false"
             android:label="@string/title_activity_campaign"
             android:theme="@style/Theme.MobileSMP.NoActionBar" />
         <activity
-            android:name=".DiscoverActivity"
+            android:name=".SubMainActivity"
             android:exported="false"
-            android:label="@string/title_activity_discover"
+            android:label="SubMainActivity"
             android:theme="@style/Theme.MobileSMP.NoActionBar" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".NavHomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_home"
+            android:label="@string/title_activity_nav_home"
             android:theme="@style/Theme.MobileSMP.NoActionBar" />
         <activity
             android:name=".CallbackActivity"

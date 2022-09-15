@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     private void onLoginSuccess(AuthSignInResult authSignInResult) {
         Log.d("LOGIN", "State: Success");
         //Go to the callback screen
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, NavHomeActivity.class);
         startActivity(intent);
     }
 //    public void onJoinPressed(View view) {

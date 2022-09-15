@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
         AuthUser currentUser = Amplify.Auth.getCurrentUser();
 
         Intent intent;
-        if(currentUser == null){
+//        if(currentUser == null){
             // Go to the login screen
-            intent = new Intent(getApplicationContext(), LoginActivity.class);
-        }else {
+//            intent = new Intent(getApplicationContext(), LoginActivity.class);
+//        }else {
             // Go to the Chat screen
-            intent = new Intent(getApplicationContext(), CallbackActivity.class);
-        }
+            intent = new Intent(getApplicationContext(), SubMainActivity.class);
+//        }
 
         // Start activity
         startActivity(intent);

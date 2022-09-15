@@ -1,16 +1,16 @@
-package com.example.mobilesmp.ui.discover;
+package com.example.mobilesmp.ui.slideshow;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DiscoverViewModel extends ViewModel {
+public class SlideshowViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public DiscoverViewModel() {
+    public SlideshowViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is discover fragment");
+        mText.setValue("This is slideshow fragment");
     }
 
     public LiveData<String> getText() {

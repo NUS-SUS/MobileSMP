@@ -20,40 +20,37 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobilesmp.databinding.ActivityHomeBinding;
+import com.example.mobilesmp.databinding.ActivityNavHomeBinding;
 
-public class HomeActivity extends AppCompatActivity {
+public class NavHomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityHomeBinding binding;
+    private ActivityNavHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        binding = ActivityNavHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarHome.toolbar);
-        /*
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(binding.appBarNavHome.toolbar);
+        binding.appBarNavHome.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
-         */
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_discover, R.id.nav_profile, R.id.nav_campaign, R.id.nav_feedback)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.campaign)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
@@ -61,13 +58,13 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.nav_home, menu);
         return true;
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -88,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
     public void onPressLogout() {
         Amplify.Auth.signOut(
                 this::onLogoutSuccess,
@@ -95,18 +93,18 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
-       private void onLogoutError(AuthException e) {
-            this.runOnUiThread(() -> {
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG)
-                        .show();
-            });
+    private void onLogoutError(AuthException e) {
+        this.runOnUiThread(() -> {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        });
 
-        }
+    }
 
-        private void onLogoutSuccess() {
-            //Go to the chat screen
-            Log.d("LOGOUT", "State: Success");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
+    private void onLogoutSuccess() {
+        //Go to the chat screen
+        Log.d("LOGOUT", "State: Success");
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

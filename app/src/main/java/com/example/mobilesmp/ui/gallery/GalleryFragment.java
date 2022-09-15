@@ -1,4 +1,4 @@
-package com.example.mobilesmp.ui.feedback;
+package com.example.mobilesmp.ui.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.mobilesmp.databinding.FragmentFeedbackBinding;
+import com.example.mobilesmp.databinding.FragmentGalleryBinding;
 
-public class FeedbackFragment extends Fragment {
+public class GalleryFragment extends Fragment {
 
-    private FragmentFeedbackBinding binding;
+    private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        FeedbackViewModel discoverViewModel =
-                new ViewModelProvider(this).get(FeedbackViewModel.class);
+        GalleryViewModel galleryViewModel =
+                new ViewModelProvider(this).get(GalleryViewModel.class);
 
-        binding = FragmentFeedbackBinding.inflate(inflater, container, false);
+        binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textFeedback;
-        discoverViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textGallery;
+        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
