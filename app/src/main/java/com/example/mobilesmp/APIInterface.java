@@ -1,6 +1,6 @@
 package com.example.mobilesmp;
 
-import com.example.retrofit.smp.Campaign;
+import com.example.retrofit.smp.CampaignResource;
 import com.example.retrofit.smp.MultipleResource;
 import com.example.retrofit.smp.User;
 import com.example.retrofit.smp.UserList;
@@ -13,10 +13,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-interface APIInterface {
+public interface APIInterface {
 
     @GET("/nussmp/campaigns")
-    Call<Campaign> doGetCampaignsResources();
+    Call<CampaignResource> doGetCampaignsResources();
 
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();

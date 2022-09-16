@@ -24,7 +24,12 @@
         tools:layout="@layout/fragment_slideshow" />
     <activity
         android:id="@+id/campaign"
-        android:name="com.example.mobilesmp.ui.campaign.Campaign"
+        android:name="com.example.mobilesmp.ui.campaign.CampaignActivity"
         android:label="activity_campaign"
         tools:layout="@layout/activity_campaign" />
+    <activity
+        android:id="@+id/discover"
+        android:name="com.example.mobilesmp.ui.discover.DiscoverActivity"
+        android:label="activity_discover"
+        tools:layout="@layout/activity_discover" />
 </navigation>

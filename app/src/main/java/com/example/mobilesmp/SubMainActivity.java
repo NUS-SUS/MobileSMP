@@ -1,17 +1,12 @@
 package com.example.mobilesmp;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.retrofit.smp.Campaign;
-import com.example.retrofit.smp.MultipleResource;
-import com.example.retrofit.smp.User;
-import com.example.retrofit.smp.UserList;
+import com.example.retrofit.smp.CampaignResource;
 
 import java.util.List;
 
@@ -27,10 +22,6 @@ public class SubMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
-                .detectLeakedClosableObjects()
-                .build());
-
         setContentView(R.layout.activity_main);
         responseText = (TextView) findViewById(R.id.responseText);
         apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -39,21 +30,36 @@ public class SubMainActivity extends AppCompatActivity {
         /**
          GET List Resources
          **/
-        Call<Campaign> call = apiInterface.doGetCampaignsResources();
-        call.enqueue(new Callback<Campaign>() {
+        Call<CampaignResource> call = apiInterface.doGetCampaignsResources();
+        call.enqueue(new Callback<CampaignResource>() {
             @Override
-            public void onResponse(Call<Campaign> call, Response<Campaign> response) {
+            public void onResponse(Call<CampaignResource> call, Response<CampaignResource> response) {
 
 
                 Log.d("TAG",response.code()+"");
 
                 String displayResponse = "";
 
-                Campaign resource = response.body();
-                List<Campaign.Campaigns> campaignList = resource.campaigns;
+                CampaignResource resource = response.body();
+                List<CampaignResource> campaignList = resource.campaigns;
 
-                for (Campaign.Campaigns campaign : campaignList) {
-                    displayResponse += campaign.description + " " + campaign.campaignsId + " " + campaign.category + " " + campaign.campaignName + "\n";
+                for (CampaignResource campaign : campaignList) {
+                    String c_description = campaign.description;
+                    String c_campaignsId = campaign.campaignsId;
+                    String c_category = campaign.category;
+                    String c_campaignName = campaign.campaignName;
+                    Boolean c_status = campaign.status;
+                    String c_companiesId = campaign.companiesId;
+                    String c_startDate = campaign.startDate;
+                    String c_endDate = campaign.endDate;
+                    String c_venue = campaign.venue;
+                    List<String> c_tags = campaign.tags;
+                    List<String> c_applied = campaign.applied;
+
+                    if (c_status)
+                        displayResponse += c_campaignName + " " + c_category
+                                + " " + c_tags + " " + c_startDate +
+                                " " + c_endDate +"\n\n\n";
                 }
 
                 responseText.setText(displayResponse);
@@ -62,7 +68,7 @@ public class SubMainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Campaign> call, Throwable t) {
+            public void onFailure(Call<CampaignResource> call, Throwable t) {
                 call.cancel();
             }
         });

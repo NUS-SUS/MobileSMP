@@ -1,4 +1,4 @@
-package com.example.mobilesmp.ui.campaign;
+package com.example.mobilesmp.ui.discover;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mobilesmp.R;
-import com.example.mobilesmp.databinding.FragmentFirstBinding;
+import com.example.mobilesmp.databinding.FragmentSecond2Binding;
 
-public class FirstFragment extends Fragment {
+public class Second2Fragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentSecond2Binding binding;
 
     @Override
     public View onCreateView(
@@ -22,7 +22,7 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentSecond2Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -30,11 +30,11 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                NavHostFragment.findNavController(Second2Fragment.this)
+                        .navigate(R.id.action_Second2Fragment_to_First2Fragment);
             }
         });
     }

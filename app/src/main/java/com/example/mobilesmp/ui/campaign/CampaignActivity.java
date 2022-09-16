@@ -16,7 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.mobilesmp.R;
 
-public class Campaign extends AppCompatActivity {
+public class CampaignActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityCampaignBinding binding;

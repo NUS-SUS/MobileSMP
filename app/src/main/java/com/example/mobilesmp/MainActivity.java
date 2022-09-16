@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 //            intent = new Intent(getApplicationContext(), LoginActivity.class);
 //        }else {
             // Go to the Chat screen
-            intent = new Intent(getApplicationContext(), SubMainActivity.class);
+            intent = new Intent(getApplicationContext(), NavHomeActivity.class);
 //        }
 
         // Start activity

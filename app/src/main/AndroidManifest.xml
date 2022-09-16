@@ -26,7 +26,12 @@
         android:theme="@style/Theme.MobileSMP"
         tools:targetApi="31">
         <activity
-            android:name=".ui.campaign.Campaign"
+            android:name=".ui.discover.DiscoverActivity"
+            android:exported="false"
+            android:label="@string/title_activity_discover"
+            android:theme="@style/Theme.MobileSMP.NoActionBar" />
+        <activity
+            android:name=".ui.campaign.CampaignActivity"
             android:exported="false"
             android:label="@string/title_activity_campaign"
             android:theme="@style/Theme.MobileSMP.NoActionBar" />
