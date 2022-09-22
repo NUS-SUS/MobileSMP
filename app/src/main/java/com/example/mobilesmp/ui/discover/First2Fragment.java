@@ -40,7 +40,7 @@ public class First2Fragment extends Fragment {
         listOfCampaign = new ViewModelProvider(requireActivity()).get(CampaignResource.class);
 
         Log.d("FragFirst",listOfCampaign.getCampaigns());
-
+/*
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +48,7 @@ public class First2Fragment extends Fragment {
                         .navigate(R.id.action_First2Fragment_to_Second2Fragment);
             }
         });
+ */
     }
 
     @Override

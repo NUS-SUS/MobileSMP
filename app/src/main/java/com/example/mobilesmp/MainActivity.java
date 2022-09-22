@@ -9,6 +9,7 @@ import android.util.Log;
 import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
+import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,11 +29,17 @@ public class MainActivity extends AppCompatActivity {
         AuthUser currentUser = Amplify.Auth.getCurrentUser();
 
         Intent intent;
-//        if(currentUser == null){
+/*
+        if(currentUser == null){
             // Go to the login screen
-//            intent = new Intent(getApplicationContext(), LoginActivity.class);
-//        }else {
+            intent = new Intent(getApplicationContext(), LoginActivity.class);
+        }else {
             // Go to the Chat screen
+ */
+            // call async Campaign API and store it inside first
+            CampaignContent campaignContent = new CampaignContent();
+            campaignContent.getAPICampaigns();
+
             intent = new Intent(getApplicationContext(), NavHomeActivity.class);
 //        }
 

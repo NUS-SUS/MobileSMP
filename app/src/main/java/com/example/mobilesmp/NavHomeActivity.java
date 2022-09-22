@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthException;
@@ -26,10 +27,20 @@ public class NavHomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavHomeBinding binding;
+    TextView testView;
+
+    private String username = "Username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            username = extras.getString("Username");
+            //The key argument here must match that used in the other activity
+        }
+        Log.d("UsernameLogging", username);
 
         binding = ActivityNavHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -47,18 +58,24 @@ public class NavHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.campaign,R.id.discover)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav_home, menu);
+
+        testView = (TextView) findViewById(R.id.textView);
+        testView.setText(username);
+
+
         return true;
     }
 

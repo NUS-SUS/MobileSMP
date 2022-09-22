@@ -31,11 +31,6 @@
             android:label="@string/title_activity_discover"
             android:theme="@style/Theme.MobileSMP.NoActionBar" />
         <activity
-            android:name=".ui.campaign.CampaignActivity"
-            android:exported="false"
-            android:label="@string/title_activity_campaign"
-            android:theme="@style/Theme.MobileSMP.NoActionBar" />
-        <activity
             android:name=".SubMainActivity"
             android:exported="false"
             android:label="SubMainActivity"

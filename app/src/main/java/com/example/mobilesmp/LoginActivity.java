@@ -19,8 +19,12 @@ import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
+import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
 
 public class LoginActivity extends AppCompatActivity {
+
+    EditText txtUsername;
+    EditText txtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onPressLogin(View view) {
-        EditText txtUsername = findViewById(R.id.txtUsername);
-        EditText txtPassword = findViewById(R.id.txtPassword);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
 
         Amplify.Auth.signIn(
                 txtUsername.getText().toString(),
@@ -92,8 +96,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginSuccess(AuthSignInResult authSignInResult) {
         Log.d("LOGIN", "State: Success");
+
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
+        intent.putExtra("Username", txtUsername.getText().toString());
         startActivity(intent);
     }
 //    public void onJoinPressed(View view) {

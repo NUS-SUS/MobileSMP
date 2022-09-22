@@ -55,7 +55,7 @@ public class DiscoverActivity extends AppCompatActivity {
         apiInterface = APIClient.getClient().create(APIInterface.class);
         listOfCampaign = new ViewModelProvider(this).get(CampaignResource.class);
 
-        responseText = (TextView) findViewById(R.id.textview_first);
+//        responseText = (TextView) findViewById(R.id.textview_first);
 
         /**
          GET List Resources
