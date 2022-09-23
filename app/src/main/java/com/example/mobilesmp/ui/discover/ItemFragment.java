@@ -81,7 +81,6 @@ public class ItemFragment extends Fragment {
             }
 
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS));
-            Log.d("CampaignItem",campaignContent.items.size()+" checked in ItemFragment");
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(campaignContent.items));
         }
         return view;

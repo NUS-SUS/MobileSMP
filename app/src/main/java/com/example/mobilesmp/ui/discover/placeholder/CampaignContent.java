@@ -26,22 +26,13 @@ import retrofit2.Response;
 public class CampaignContent{
     APIInterface apiInterface;
 
-    public static List<CampaignContentItem> getItems() {
-        return items;
-    }
-
     public static List<CampaignContentItem> items = new ArrayList<CampaignContentItem>();
     public static Map<String, CampaignContentItem> item_map = new HashMap<String, CampaignContentItem>();
 
     public static int count = 0;
 
-    private void addItem(CampaignContentItem item) {
-        items.add(item);
-        item_map.put(item.id, item);
-    }
-
     private CampaignContentItem createPlaceholderItem(int position) {
-        return new CampaignContentItem(String.valueOf(position), "c_description", "c_campaignsId", "c_category",
+        return new CampaignContentItem( "c_description", "c_campaignsId", "c_category",
                                 "c_campaignName", "c_companiesId", "c_startDate",
                                     "c_endDate","c_venue",new ArrayList<String>(),new ArrayList<String>());
     }
@@ -78,12 +69,13 @@ public class CampaignContent{
                     List<String> c_applied = campaign.applied;
 
                     if (c_status){
-                        count++;
-                        CampaignContentItem item = new CampaignContentItem(count+"",c_description,c_campaignsId,c_category,c_campaignName,
+                        CampaignContentItem item = new CampaignContentItem(c_description,c_campaignsId,c_category,c_campaignName,
                                 c_companiesId,c_startDate,c_endDate,
                                 c_venue,c_tags,c_applied);
                         items.add(item);
                         item_map.put(count+"", item);
+                        count++;
+
                     }
                 }
 
@@ -103,7 +95,6 @@ public class CampaignContent{
      */
     public class CampaignContentItem {
 
-        public final String id;
         public final String c_description;
         public final String c_campaignsId;
         public final String c_category;
@@ -115,10 +106,10 @@ public class CampaignContent{
         public final List<String> c_tags;
         public final List<String> c_applied;
 
-        public CampaignContentItem(String id, String c_description, String c_campaignsId, String c_category, String c_campaignName,
+        public CampaignContentItem(String c_description, String c_campaignsId, String c_category, String c_campaignName,
                                  String c_companiesId, String c_startDate, String c_endDate,
                                     String c_venue, List<String> c_tags, List<String> c_applied) {
-            this.id = id;
+
             this.c_description = c_description;
             this.c_campaignsId = c_campaignsId;
             this.c_category = c_category;
@@ -133,7 +124,13 @@ public class CampaignContent{
 
         @Override
         public String toString() {
-            return c_campaignName;
+            return c_campaignName+" "+c_category;
+        }
+
+        public CampaignContentItem getCampaignItem() {
+            return new CampaignContentItem(c_description,c_campaignsId,c_category,c_campaignName,
+                    c_companiesId,c_startDate,c_endDate,
+                    c_venue,c_tags,c_applied);
         }
     }
 

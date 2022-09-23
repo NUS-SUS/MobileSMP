@@ -77,6 +77,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             itemView.findViewById(R.id.item_button_view_campaign).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    CampaignViewFragment campaignViewFragment = CampaignViewFragment.newInstance(position+"");
                     Navigation.findNavController(v).navigate(R.id.campaignViewFragment);
                 }
             });
