@@ -9,12 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.amazonaws.mobile.client.AWSMobileClient;
-import com.amazonaws.mobile.client.Callback;
-import com.amazonaws.mobile.client.HostedUIOptions;
-import com.amazonaws.mobile.client.IdentityProvider;
-import com.amazonaws.mobile.client.SignInUIOptions;
-import com.amazonaws.mobile.client.UserStateDetails;
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.result.AuthSignInResult;
@@ -97,9 +91,22 @@ public class LoginActivity extends AppCompatActivity {
     private void onLoginSuccess(AuthSignInResult authSignInResult) {
         Log.d("LOGIN", "State: Success");
 
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> Log.d("AuthDemo", "User attributes = " + attributes.toString()),
+                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+        );
+
+        Log.d("LOGIN", "State: Success");
+
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
         intent.putExtra("Username", txtUsername.getText().toString());
+
+        // call async Campaign API and store it inside first
+        CampaignContent campaignContent = new CampaignContent();
+        campaignContent.getAPICampaigns();
+
+
         startActivity(intent);
     }
 //    public void onJoinPressed(View view) {

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/itemFragment">
+    app:startDestination="@id/profileEditFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -34,10 +34,28 @@
     <fragment
         android:id="@+id/campaignViewFragment"
         android:name="com.example.mobilesmp.ui.discover.CampaignViewFragment"
-        android:label="fragment_campaign_view"
+        android:label="Campaign"
         tools:layout="@layout/fragment_campaign_view" >
         <action
             android:id="@+id/action_campaignViewFragment_to_itemFragment"
             app:destination="@id/itemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.mobilesmp.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.example.mobilesmp.ui.profile.ProfileEditFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_edit" >
+        <action
+            android:id="@+id/action_profileEditFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

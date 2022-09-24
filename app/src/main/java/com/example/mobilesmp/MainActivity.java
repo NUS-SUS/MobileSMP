@@ -29,19 +29,19 @@ public class MainActivity extends AppCompatActivity {
         AuthUser currentUser = Amplify.Auth.getCurrentUser();
 
         Intent intent;
-/*
+
         if(currentUser == null){
             // Go to the login screen
             intent = new Intent(getApplicationContext(), LoginActivity.class);
         }else {
             // Go to the Chat screen
- */
+
             // call async Campaign API and store it inside first
             CampaignContent campaignContent = new CampaignContent();
             campaignContent.getAPICampaigns();
 
             intent = new Intent(getApplicationContext(), NavHomeActivity.class);
-//        }
+       }
 
         // Start activity
         startActivity(intent);
