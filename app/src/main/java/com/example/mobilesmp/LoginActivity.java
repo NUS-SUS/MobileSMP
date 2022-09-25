@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.auth.AuthProvider;
+import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -87,16 +90,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+    private void setAttribute(List<AuthUserAttribute> attr){
+        Log.d("LOGIN", "State: After Fetch");
+        for (AuthUserAttribute x : attr) {
+            if (x.getKey().getKeyString().equals("email")){
+                Log.d("AuthEmail", "Current User email = " + x.getValue());
+            }else{
+                Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
+                Log.d("AuthEmail", "Other Values = " + x.getValue());
 
-    private void onLoginSuccess(AuthSignInResult authSignInResult) {
-        Log.d("LOGIN", "State: Success");
-
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> Log.d("AuthDemo", "User attributes = " + attributes.toString()),
-                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
-        );
-
-        Log.d("LOGIN", "State: Success");
+            }
+        }
 
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
@@ -108,6 +112,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
         startActivity(intent);
+
+    }
+    private void onLoginSuccess(AuthSignInResult authSignInResult) {
+        Log.d("LOGIN", "State: Success");
+
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> setAttribute(attributes),
+                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+        );
     }
 //    public void onJoinPressed(View view) {
 //        Intent intent = new Intent(this, JoinActivity.class);
