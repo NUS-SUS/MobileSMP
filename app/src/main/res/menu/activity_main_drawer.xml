@@ -9,14 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
             android:id="@+id/itemFragment"
             android:icon="@drawable/ic_menu_discover"
             android:title="@string/menu_discover" />
@@ -24,5 +16,9 @@
             android:id="@+id/profileFragment"
             android:icon="@drawable/ic_menu_profile"
             android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/feedbackFragment"
+            android:icon="@drawable/ic_menu_feedback"
+            android:title="@string/menu_feedback" />
     </group>
 </menu>

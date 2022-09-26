@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtUsername;
     EditText txtPassword;
 
+    Boolean social = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void onPressFacebookLogin(View view) {
+        social = true;
 //// For Facebook
 //        HostedUIOptions hostedUIOptions = HostedUIOptions.builder()
 //                .scopes("openid", "email")
@@ -74,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onPressGoogleLogin(View view) {
+        social = true;
         Amplify.Auth.signInWithSocialWebUI(
                 AuthProvider.google(),
                 this,
@@ -91,20 +95,26 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void setAttribute(List<AuthUserAttribute> attr){
-        Log.d("LOGIN", "State: After Fetch");
-        for (AuthUserAttribute x : attr) {
-            if (x.getKey().getKeyString().equals("email")){
-                Log.d("AuthEmail", "Current User email = " + x.getValue());
-            }else{
-                Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
-                Log.d("AuthEmail", "Other Values = " + x.getValue());
 
-            }
-        }
 
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
-        intent.putExtra("Username", txtUsername.getText().toString());
+        if (social == false)
+            intent.putExtra("Username", txtUsername.getText().toString());
+        else{
+            Log.d("LOGIN", "State: After Fetch");
+            for (AuthUserAttribute x : attr) {
+                if (x.getKey().getKeyString().equals("email")){
+                    Log.d("AuthEmail", "Current User email = " + x.getValue());
+                    intent.putExtra("Username", x.getValue());
+                }else{
+                    Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
+                    Log.d("AuthEmail", "Other Values = " + x.getValue());
+
+                }
+            }
+        }
+
 
         // call async Campaign API and store it inside first
         CampaignContent campaignContent = new CampaignContent();
