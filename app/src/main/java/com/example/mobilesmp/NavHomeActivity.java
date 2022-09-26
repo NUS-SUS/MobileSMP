@@ -1,5 +1,7 @@
 package com.example.mobilesmp;
 
+import static com.example.mobilesmp.Constants.testEnvironment;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,7 @@ public class NavHomeActivity extends AppCompatActivity {
     TextView testView;
 
     private String username = "Username";
+    private String userEmail = "UserEmail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +41,11 @@ public class NavHomeActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             username = extras.getString("Username");
+            userEmail = extras.getString("UserEmail");
             //The key argument here must match that used in the other activity
         }
-        Log.d("UsernameLogging", username);
+        Log.d("Username Logging", username);
+        Log.d("UserEmail Logging", userEmail);
 
         binding = ActivityNavHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -107,10 +112,15 @@ public class NavHomeActivity extends AppCompatActivity {
 
 
     public void onPressLogout() {
-        Amplify.Auth.signOut(
-                this::onLogoutSuccess,
-                this::onLogoutError
-        );
+        if(testEnvironment){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }else{
+            Amplify.Auth.signOut(
+                    this::onLogoutSuccess,
+                    this::onLogoutError
+            );
+        }
     }
 
     private void onLogoutError(AuthException e) {

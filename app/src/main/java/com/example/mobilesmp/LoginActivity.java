@@ -1,5 +1,7 @@
 package com.example.mobilesmp;
 
+import static com.example.mobilesmp.Constants.testEnvironment;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,40 +36,22 @@ public class LoginActivity extends AppCompatActivity {
     public void onPressLogin(View view) {
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
+        if(testEnvironment){
+            this.onTestAccount(view);
+        }else{
+            Amplify.Auth.signIn(
+                    txtUsername.getText().toString(),
+                    txtPassword.getText().toString(),
+                    this::onLoginSuccess,
+                    this::onLoginError
 
-        Amplify.Auth.signIn(
-                txtUsername.getText().toString(),
-                txtPassword.getText().toString(),
-                this::onLoginSuccess,
-                this::onLoginError
-
-        );
+            );
+        }
     }
 
 
     public void onPressFacebookLogin(View view) {
         social = true;
-//// For Facebook
-//        HostedUIOptions hostedUIOptions = HostedUIOptions.builder()
-//                .scopes("openid", "email")
-//                .identityProvider("Facebook")
-//                .build();
-//
-//        SignInUIOptions signInUIOptions = SignInUIOptions.builder()
-//                .hostedUIOptions(hostedUIOptions)
-//                .build();
-//// 'this' refers to the current active Activity
-//        AWSMobileClient.getInstance().showSignIn(this, signInUIOptions, new Callback<UserStateDetails>() {
-//            @Override
-//            public void onResult(UserStateDetails details) {
-//                Log.d("FB LOGIN", "onResult: " + details.getUserState());
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Log.e("FB LOGIN", "onError: ", e);
-//            }
-//        });
         Amplify.Auth.signInWithSocialWebUI(
                 AuthProvider.facebook(),
                 this,
@@ -101,12 +85,14 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NavHomeActivity.class);
         if (social == false)
             intent.putExtra("Username", txtUsername.getText().toString());
+        //TODO: miss logic for email
         else{
             Log.d("LOGIN", "State: After Fetch");
             for (AuthUserAttribute x : attr) {
                 if (x.getKey().getKeyString().equals("email")){
                     Log.d("AuthEmail", "Current User email = " + x.getValue());
                     intent.putExtra("Username", x.getValue());
+                    intent.putExtra("UserEmail", x.getValue());
                 }else{
                     Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
                     Log.d("AuthEmail", "Other Values = " + x.getValue());
@@ -132,8 +118,15 @@ public class LoginActivity extends AppCompatActivity {
                 error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
         );
     }
-//    public void onJoinPressed(View view) {
-//        Intent intent = new Intent(this, JoinActivity.class);
-//        startActivity(intent);
-//    }
+
+    public void onTestAccount(View view) {
+        txtUsername.getText().toString();
+        txtPassword.getText().toString();
+        Intent intent = new Intent(this, NavHomeActivity.class);
+        intent.putExtra("Username", txtUsername.getText().toString());
+        intent.putExtra("UserEmail", "test@email.com");
+        CampaignContent campaignContent = new CampaignContent();
+        campaignContent.getAPICampaigns();
+        startActivity(intent);
+    }
 }
