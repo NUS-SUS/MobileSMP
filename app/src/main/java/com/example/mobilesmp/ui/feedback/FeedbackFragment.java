@@ -18,6 +18,15 @@ import com.example.mobilesmp.databinding.FragmentFeedbackBinding;
 import com.example.retrofit.smp.FeedbackContent;
 import com.example.retrofit.smp.FeedbackResource;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +37,7 @@ public class FeedbackFragment extends Fragment {
     EditText editText;
     View view;
     APIInterface apiInterface;
+    String FILENAME = "Draft";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +55,31 @@ public class FeedbackFragment extends Fragment {
 
         editText = (EditText) view.findViewById(R.id.plain_text_input);
 
+        File dir = getActivity().getFilesDir();
+        File file = new File(dir, FILENAME);
+        if (file.exists()){
+            Log.d("FeedbackFramgent","Draft retrieved");
+            try {
+                FileInputStream fis = getActivity().openFileInput(FILENAME);
+                InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+                StringBuilder stringBuilder = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+                    String line = reader.readLine();
+                    while (line != null) {
+                        stringBuilder.append(line).append('\n');
+                        line = reader.readLine();
+                    }
+                    editText.setText(stringBuilder);
+                    Log.d("FeedbackFramgent","Draft set text");
+                } catch (IOException e) {
+                    // Error occurred when opening raw file for reading.
+                } finally {
+                    String contents = stringBuilder.toString();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 
         binding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,14 +88,16 @@ public class FeedbackFragment extends Fragment {
                 FeedbackContent feedback = new FeedbackContent(editText.getText().toString(),"", feedbackResource.count+1+"","",
                                                         1,"",1 );
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Log.d("FeedbackFramgent",editText.getText().toString()+" --> EditText");
-                Log.d("FeedbackFramgent",feedbackResource.count+" --> Feedback Size");
                 Call<FeedbackContent> call1 = apiInterface.submitFeedback(feedback);
                 call1.enqueue(new Callback<FeedbackContent>() {
                     @Override
                     public void onResponse(Call<FeedbackContent> call, Response<FeedbackContent> response) {
                         Log.d("FeedbackFramgent","Submitted Feedback");
                         feedbackResource.count++;
+                        if (file.exists()){
+                            boolean deleted = file.delete();
+                            Log.d("FeedbackFramgent","Draft deleted");
+                        }
                     }
 
                     @Override
@@ -68,6 +105,23 @@ public class FeedbackFragment extends Fragment {
                         call.cancel();
                     }
                 });
+            }
+        });
+
+        binding.buttonSaveAsDraft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    FileOutputStream fos = getActivity().openFileOutput(FILENAME, getActivity().MODE_PRIVATE);
+                    fos.write(editText.getText().toString().getBytes());
+                    Log.d("FeedbackFramgent","Draft saved");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
