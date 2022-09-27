@@ -43,9 +43,10 @@ public class NavHomeActivity extends AppCompatActivity {
             username = extras.getString("Username");
             userEmail = extras.getString("UserEmail");
             //The key argument here must match that used in the other activity
+            Log.d("Username Logging", username);
+            Log.d("UserEmail Logging", userEmail);
         }
-        Log.d("Username Logging", username);
-        Log.d("UserEmail Logging", userEmail);
+
 
         binding = ActivityNavHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -66,7 +67,7 @@ public class NavHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment, R.id.payment1Fragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
