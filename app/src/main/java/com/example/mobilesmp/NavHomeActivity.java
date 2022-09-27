@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.payment.PaymentExample;
+import com.example.retrofit.smp.CurrentUser;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,6 +50,8 @@ public class NavHomeActivity extends AppCompatActivity {
             //The key argument here must match that used in the other activity
             Log.d("Username Logging", username);
             Log.d("UserEmail Logging", userEmail);
+            CurrentUser.setUserName(username);
+            CurrentUser.setUserEmail(userEmail);
         }
 
 
@@ -71,7 +74,7 @@ public class NavHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment, R.id.payment1Fragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
