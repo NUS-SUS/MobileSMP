@@ -7,6 +7,7 @@
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_logout.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MobileSMP/app/src/main/res/layout/activity_main.xml" value="0.15121580547112462" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/drawable/edit_text_border.xml" value="0.22" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_callback.xml" value="0.2864583333333333" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_campaign.xml" value="0.18541666666666667" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/activity_discover.xml" value="0.25" />
@@ -29,7 +30,7 @@
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_campaign.xml" value="0.18541666666666667" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_campaign_view.xml" value="0.25" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_discover.xml" value="0.18541666666666667" />
-        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_feedback.xml" value="0.18541666666666667" />
+        <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_feedback.xml" value="0.22" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_first2.xml" value="0.18541666666666667" />
         <entry key="..\:/Team6Android/MobileSMP/app/src/main/res/layout/fragment_gallery.xml" value="0.2864583333333333" />

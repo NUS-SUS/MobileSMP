@@ -1,6 +1,8 @@
 package com.example.mobilesmp;
 
 import com.example.retrofit.smp.CampaignResource;
+import com.example.retrofit.smp.FeedbackContent;
+import com.example.retrofit.smp.FeedbackResource;
 import com.example.retrofit.smp.MultipleResource;
 import com.example.retrofit.smp.User;
 import com.example.retrofit.smp.UserList;
@@ -17,6 +19,12 @@ public interface APIInterface {
 
     @GET("/nussmp/campaigns")
     Call<CampaignResource> doGetCampaignsResources();
+
+    @GET("/nussmp/feedbacks")
+    Call<FeedbackResource> doGetFeedbacksResources();
+
+    @POST("/nussmp/feedback")
+    Call<FeedbackContent> submitFeedback(@Body FeedbackContent feedback);
 
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();
