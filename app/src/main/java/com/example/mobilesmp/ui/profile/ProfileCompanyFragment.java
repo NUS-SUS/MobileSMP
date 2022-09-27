@@ -6,22 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mobilesmp.R;
-import com.example.mobilesmp.databinding.FragmentProfileBinding;
+import com.example.mobilesmp.databinding.FragmentProfileCompanyBinding;
 
-public class ProfileFragment extends Fragment {
+public class ProfileCompanyFragment extends Fragment {
 
-    FragmentProfileBinding binding;
+    FragmentProfileCompanyBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentProfileCompanyBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -33,8 +32,8 @@ public class ProfileFragment extends Fragment {
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ProfileFragment.this)
-                        .navigate(R.id.action_profileFragment_to_profileEditFragment);
+                NavHostFragment.findNavController(ProfileCompanyFragment.this)
+                        .navigate(R.id.action_profileCompanyFragment_to_profileEditFragment);
             }
         });
     }

@@ -1,8 +1,10 @@
 package com.example.mobilesmp;
 
 import com.example.retrofit.smp.CampaignResource;
+import com.example.retrofit.smp.CompanyResource;
 import com.example.retrofit.smp.FeedbackContent;
 import com.example.retrofit.smp.FeedbackResource;
+import com.example.retrofit.smp.InfluencerResource;
 import com.example.retrofit.smp.MultipleResource;
 import com.example.retrofit.smp.PaymentContent;
 import com.example.retrofit.smp.User;
@@ -29,6 +31,12 @@ public interface APIInterface {
 
     @GET("/nussmp/payment")
     Call<PaymentContent> doGetPaymentResources(@Query("PAYMENTS_ID") String payment_id);
+
+    @GET("/nussmp/company")
+    Call<CompanyResource> doGetCompanyResources(@Query("EMAIL") String email);
+
+    @GET("/nussmp/influencer")
+    Call<InfluencerResource> doGetInfluenceResources(@Query("EMAIL") String email);
 
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();

@@ -17,6 +17,7 @@ import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackResource;
 
 import java.util.List;
@@ -52,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void onPressFacebookLogin(View view) {
-        social = true;
         Amplify.Auth.signInWithSocialWebUI(
                 AuthProvider.facebook(),
                 this,
@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onPressGoogleLogin(View view) {
-        social = true;
         Amplify.Auth.signInWithSocialWebUI(
                 AuthProvider.google(),
                 this,
@@ -84,23 +83,23 @@ public class LoginActivity extends AppCompatActivity {
 
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
-        if (social == false)
-            intent.putExtra("Username", txtUsername.getText().toString());
-        //TODO: miss logic for email
-        else{
             Log.d("LOGIN", "State: After Fetch");
             for (AuthUserAttribute x : attr) {
                 if (x.getKey().getKeyString().equals("email")){
                     Log.d("AuthEmail", "Current User email = " + x.getValue());
                     intent.putExtra("Username", x.getValue());
                     intent.putExtra("UserEmail", x.getValue());
+
+                    CurrentUser currentUser = new CurrentUser();
+                    currentUser.setUserEmail(x.getValue());
+                    currentUser.getUserTypeAPI();
                 }else{
                     Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
                     Log.d("AuthEmail", "Other Values = " + x.getValue());
 
                 }
             }
-        }
+
 
 
         // call async Campaign API and store it inside first
