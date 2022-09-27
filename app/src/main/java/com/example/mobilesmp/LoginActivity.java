@@ -17,6 +17,7 @@ import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.retrofit.smp.FeedbackResource;
 
 import java.util.List;
 
@@ -105,6 +106,10 @@ public class LoginActivity extends AppCompatActivity {
         // call async Campaign API and store it inside first
         CampaignContent campaignContent = new CampaignContent();
         campaignContent.getAPICampaigns();
+
+        // call async Feedback API and get count
+        FeedbackResource feedbackResource = new FeedbackResource();
+        feedbackResource.getCount();
 
 
         startActivity(intent);

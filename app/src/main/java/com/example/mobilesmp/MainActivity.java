@@ -10,6 +10,7 @@ import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.retrofit.smp.FeedbackResource;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
             // Go to the login screen
             intent = new Intent(getApplicationContext(), LoginActivity.class);
         }else {
-            // Go to the Chat screen
 
             // call async Campaign API and store it inside first
             CampaignContent campaignContent = new CampaignContent();
             campaignContent.getAPICampaigns();
 
+            // call async Feedback API and get count
+            FeedbackResource feedbackResource = new FeedbackResource();
+            feedbackResource.getCount();
+
+            // Go to the Chat screen
             intent = new Intent(getApplicationContext(), NavHomeActivity.class);
        }
 

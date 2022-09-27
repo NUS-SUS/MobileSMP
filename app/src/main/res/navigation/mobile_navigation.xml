@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/profileEditFragment">
+    app:startDestination="@id/feedbackFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/feedbackFragment"
-        android:name="com.example.mobilesmp.FeedbackFragment"
+        android:name="com.example.mobilesmp.ui.feedback.FeedbackFragment"
         android:label="Feedback"
         tools:layout="@layout/fragment_feedback" />
 </navigation>

@@ -41,6 +41,8 @@ public class CampaignContent{
 
         count = 0;
         apiInterface = APIClient.getClient().create(APIInterface.class);
+        items.clear();
+        item_map.clear();
 
         /**
          GET List Resources
