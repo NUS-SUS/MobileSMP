@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.core.Amplify;
+import com.example.mobilesmp.ui.payment.PaymentExample;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,6 +38,9 @@ public class NavHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get Payment ID example
+        PaymentExample paymentExample = new PaymentExample();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -67,7 +71,7 @@ public class NavHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment, R.id.payment1Fragment)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileFragment, R.id.feedbackFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);

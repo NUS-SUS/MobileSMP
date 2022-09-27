@@ -4,6 +4,7 @@ import com.example.retrofit.smp.CampaignResource;
 import com.example.retrofit.smp.FeedbackContent;
 import com.example.retrofit.smp.FeedbackResource;
 import com.example.retrofit.smp.MultipleResource;
+import com.example.retrofit.smp.PaymentContent;
 import com.example.retrofit.smp.User;
 import com.example.retrofit.smp.UserList;
 
@@ -25,6 +26,9 @@ public interface APIInterface {
 
     @POST("/nussmp/feedback")
     Call<FeedbackContent> submitFeedback(@Body FeedbackContent feedback);
+
+    @GET("/nussmp/payment")
+    Call<PaymentContent> doGetPaymentResources(@Query("PAYMENTS_ID") String payment_id);
 
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();

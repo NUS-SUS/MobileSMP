@@ -1,7 +1,5 @@
 package com.example.mobilesmp;
 
-import com.example.retrofit.smp.MultipleResource;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
