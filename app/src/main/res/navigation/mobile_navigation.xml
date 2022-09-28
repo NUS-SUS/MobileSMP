@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/profileEditFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -43,23 +43,19 @@
     <fragment
         android:id="@+id/profileCompanyFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileCompanyFragment"
-        android:label="Company Profile"
-        tools:layout="@layout/fragment_profile_company" >
-        <action
-            android:id="@+id/action_profileCompanyFragment_to_profileEditFragment"
-            app:destination="@id/profileEditFragment" />
-    </fragment>
+        android:label="Company Profile Edit"
+        tools:layout="@layout/fragment_profile_company" />
     <fragment
         android:id="@+id/profileEditFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileEditFragment"
-        android:label="Profile"
+        android:label="Profile Edit"
         tools:layout="@layout/fragment_profile_edit" >
-        <action
-            android:id="@+id/action_profileEditFragment_to_profileCompanyFragment"
-            app:destination="@id/profileCompanyFragment" />
         <action
             android:id="@+id/action_profileEditFragment_to_profileInfluencerFragment"
             app:destination="@id/profileInfluencerFragment" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_profileCompanyFragment"
+            app:destination="@id/profileCompanyFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedbackFragment"
@@ -69,10 +65,6 @@
     <fragment
         android:id="@+id/profileInfluencerFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileInfluencerFragment"
-        android:label="Influencer Profile"
-        tools:layout="@layout/fragment_profile_influencer" >
-        <action
-            android:id="@+id/action_profileInfluencerFragment_to_profileEditFragment"
-            app:destination="@id/profileEditFragment" />
-    </fragment>
+        android:label="Influencer Profile Edit"
+        tools:layout="@layout/fragment_profile_influencer" />
 </navigation>

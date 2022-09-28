@@ -16,6 +16,15 @@ public class CurrentUser {
 
     APIInterface apiInterface;
 
+    public CurrentUser(){
+    }
+
+
+    public CurrentUser(String userName, String userEmail){
+        this.userName = userName;
+        this.userEmail = userEmail;
+    }
+
 
     public static String getUserName() {
         return userName;

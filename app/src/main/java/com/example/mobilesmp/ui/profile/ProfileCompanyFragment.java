@@ -32,8 +32,8 @@ public class ProfileCompanyFragment extends Fragment {
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ProfileCompanyFragment.this)
-                        .navigate(R.id.action_profileCompanyFragment_to_profileEditFragment);
+                //NavHostFragment.findNavController(ProfileCompanyFragment.this)
+                //        .navigate(R.id.action_profileCompanyFragment_to_profileEditFragment);
             }
         });
     }

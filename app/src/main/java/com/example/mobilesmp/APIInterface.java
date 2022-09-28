@@ -1,14 +1,6 @@
 package com.example.mobilesmp;
 
-import com.example.retrofit.smp.CampaignResource;
-import com.example.retrofit.smp.CompanyResource;
-import com.example.retrofit.smp.FeedbackContent;
-import com.example.retrofit.smp.FeedbackResource;
-import com.example.retrofit.smp.InfluencerResource;
-import com.example.retrofit.smp.MultipleResource;
-import com.example.retrofit.smp.PaymentContent;
-import com.example.retrofit.smp.User;
-import com.example.retrofit.smp.UserList;
+import com.example.retrofit.smp.*;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -37,6 +29,9 @@ public interface APIInterface {
 
     @GET("/nussmp/influencer")
     Call<InfluencerResource> doGetInfluenceResources(@Query("EMAIL") String email);
+
+    @GET("/nussmp/classifications")
+    Call<ClassificationsResource> doGetClassificationsResources();
 
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();

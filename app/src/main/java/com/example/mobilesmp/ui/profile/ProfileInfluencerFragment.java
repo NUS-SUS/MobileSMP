@@ -33,8 +33,8 @@ public class ProfileInfluencerFragment extends Fragment {
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ProfileInfluencerFragment.this)
-                        .navigate(R.id.action_profileInfluencerFragment_to_profileEditFragment);
+                //NavHostFragment.findNavController(ProfileInfluencerFragment.this)
+                //        .navigate(R.id.action_profileInfluencerFragment_to_profileEditFragment);
             }
         });
     }

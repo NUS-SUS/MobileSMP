@@ -10,6 +10,7 @@ import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.retrofit.smp.ClassificationsResource;
 import com.example.retrofit.smp.FeedbackResource;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
             // call async Feedback API and get count
             FeedbackResource feedbackResource = new FeedbackResource();
             feedbackResource.getCount();
+
+            // call async Classification API and store it inside first
+            ClassificationsResource classificationsResource = new ClassificationsResource();
+            classificationsResource.getClassificationsAPI();
 
             // Go to the Chat screen
             intent = new Intent(getApplicationContext(), NavHomeActivity.class);

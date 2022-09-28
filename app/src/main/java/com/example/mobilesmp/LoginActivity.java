@@ -17,6 +17,8 @@ import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.retrofit.smp.ClassificationContent;
+import com.example.retrofit.smp.ClassificationsResource;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackResource;
 
@@ -90,8 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("Username", x.getValue());
                     intent.putExtra("UserEmail", x.getValue());
 
-                    CurrentUser currentUser = new CurrentUser();
-                    currentUser.setUserEmail(x.getValue());
+                    CurrentUser currentUser = new CurrentUser(x.getValue(),x.getValue());
                     currentUser.getUserTypeAPI();
                 }else{
                     Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
@@ -109,6 +110,10 @@ public class LoginActivity extends AppCompatActivity {
         // call async Feedback API and get count
         FeedbackResource feedbackResource = new FeedbackResource();
         feedbackResource.getCount();
+
+        // call async Classification API and store it inside first
+        ClassificationsResource classificationsResource = new ClassificationsResource();
+        classificationsResource.getClassificationsAPI();
 
 
         startActivity(intent);

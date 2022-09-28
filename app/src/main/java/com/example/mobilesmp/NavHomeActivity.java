@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.payment.PaymentExample;
 import com.example.retrofit.smp.CurrentUser;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -41,7 +39,7 @@ public class NavHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Get Payment ID example
-        PaymentExample paymentExample = new PaymentExample();
+        //PaymentExample paymentExample = new PaymentExample();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
