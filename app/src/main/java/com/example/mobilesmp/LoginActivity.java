@@ -17,7 +17,6 @@ import com.amplifyframework.auth.AuthUserAttribute;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
-import com.example.retrofit.smp.ClassificationContent;
 import com.example.retrofit.smp.ClassificationsResource;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackResource;

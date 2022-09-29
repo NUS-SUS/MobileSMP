@@ -62,7 +62,6 @@ public class FeedbackResource {
                 FeedbackResource resource = response.body();
 
                 for (FeedbackResource feedback : resource.feedbacks) {
-
                     count++;
                 }
 
