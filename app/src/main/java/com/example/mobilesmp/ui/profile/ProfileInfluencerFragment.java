@@ -60,9 +60,10 @@ public class ProfileInfluencerFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        InfluencerContent influencerContent = new InfluencerContent();
+        Log.d("Influencer",influencerContent.toString());
 
         date = (TextView) view.findViewById(R.id.textView21);
-
         binding.buttonPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,8 +204,6 @@ public class ProfileInfluencerFragment extends Fragment {
                 builder.show();
             }
         });
-
-
 
         AutoCompleteTextView spinner3 = (AutoCompleteTextView) view.findViewById(R.id.autoCompletetextView24);
         ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, COUNTRIES);

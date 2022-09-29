@@ -68,8 +68,8 @@ public class ProfileEditFragment extends Fragment {
                 }
                 else if (spinner1.getSelectedItem().toString().equals("Influencer")){
 
-                    //InfluencerContent influencerContent = new InfluencerContent(email.getText().toString(),Integer.parseInt(contactNumber.getText().toString()),blockNumber.getText().toString(),
-                    //        streetName.getText().toString(),unitNumber.getText().toString(),Integer.parseInt(postalCode.getText().toString()));
+                    InfluencerContent influencerContent = new InfluencerContent(email.getText().toString(),Integer.parseInt(contactNumber.getText().toString()),blockNumber.getText().toString(),
+                            streetName.getText().toString(),unitNumber.getText().toString(),Integer.parseInt(postalCode.getText().toString()));
 
 
                     NavHostFragment.findNavController(ProfileEditFragment.this)

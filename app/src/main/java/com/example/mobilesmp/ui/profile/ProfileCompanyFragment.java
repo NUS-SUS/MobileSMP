@@ -9,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentProfileCompanyBinding;
@@ -29,6 +31,11 @@ public class ProfileCompanyFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        AutoCompleteTextView spinner3 = (AutoCompleteTextView) view.findViewById(R.id.autoCompletetextView23);
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, COUNTRIES);
+        dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(dataAdapter3);
 
 
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
