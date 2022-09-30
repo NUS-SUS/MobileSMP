@@ -28,7 +28,7 @@ public interface APIInterface {
     Call<CompanyResource> doGetCompanyResources(@Query("EMAIL") String email);
 
     @GET("/nussmp/influencer")
-    Call<InfluencerResource> doGetInfluenceResources(@Query("EMAIL") String email);
+    Call<InfluencerContent> doGetInfluenceResources(@Query("EMAIL") String email);
 
     @GET("/nussmp/classifications")
     Call<ClassificationsResource> doGetClassificationsResources();

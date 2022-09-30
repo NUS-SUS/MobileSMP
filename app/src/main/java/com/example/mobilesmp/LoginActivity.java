@@ -3,6 +3,7 @@ package com.example.mobilesmp;
 import static com.example.mobilesmp.Constants.testEnvironment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +21,13 @@ import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
 import com.example.retrofit.smp.ClassificationsResource;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackResource;
+import com.example.retrofit.smp.InfluencerContent;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -81,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void setAttribute(List<AuthUserAttribute> attr){
 
-
+        CurrentUser currentUser = new CurrentUser();
         //Go to the callback screen
         Intent intent = new Intent(this, NavHomeActivity.class);
             Log.d("LOGIN", "State: After Fetch");
@@ -91,8 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("Username", x.getValue());
                     intent.putExtra("UserEmail", x.getValue());
 
-                    CurrentUser currentUser = new CurrentUser(x.getValue(),x.getValue());
-                    currentUser.getUserTypeAPI();
+                    currentUser = new CurrentUser(x.getValue(),x.getValue());
+                    //currentUser.getUserTypeAPI();
                 }else{
                     Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
                     Log.d("AuthEmail", "Other Values = " + x.getValue());
@@ -100,7 +106,26 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
+        Call<InfluencerContent> call1 = apiInterface.doGetInfluenceResources(currentUser.getUserEmail());
+        call1.enqueue(new Callback<InfluencerContent>() {
+            @Override
+            public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
+                Log.d("CurrentUser",response.code()+" => response code");
+                InfluencerContent influencerContent = response.body();
+                influencerContent.setValues();
+                Intent intent = new Intent("InfluencerEvent");
+                Toast.makeText(getApplicationContext(),"Profile Influencer Retrieved",Toast.LENGTH_SHORT).show();
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+            }
+
+            @Override
+            public void onFailure(Call<InfluencerContent> call, Throwable t) {
+                Log.d("CurrentUser","No Influencer");
+                call.cancel();
+            }
+        });
 
         // call async Campaign API and store it inside first
         CampaignContent campaignContent = new CampaignContent();

@@ -1,6 +1,11 @@
 package com.example.retrofit.smp;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.mobilesmp.APIClient;
 import com.example.mobilesmp.APIInterface;
@@ -12,6 +17,11 @@ import retrofit2.Response;
 public class CurrentUser {
     private static String userName;
     private static String userEmail = "test@gmail.com";
+
+    public static void setType(String type) {
+        CurrentUser.type = type;
+    }
+
     private static String type = "None";
 
     APIInterface apiInterface;
@@ -49,18 +59,18 @@ public class CurrentUser {
     public void getUserTypeAPI(){
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        Call<InfluencerResource> call1 = apiInterface.doGetInfluenceResources(userEmail);
-        call1.enqueue(new Callback<InfluencerResource>() {
+        Call<InfluencerContent> call1 = apiInterface.doGetInfluenceResources(userEmail);
+        call1.enqueue(new Callback<InfluencerContent>() {
             @Override
-            public void onResponse(Call<InfluencerResource> call, Response<InfluencerResource> response) {
+            public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
                 Log.d("CurrentUser",response.code()+" => response code");
-                InfluencerResource influencerResource = response.body();
+                InfluencerContent influencerContent = response.body();
+                influencerContent.setValues();
                 type = "Influencer";
-                Log.d("ProfileViewFrag","ThreadID in Curre -> " +Thread.currentThread().getId());
             }
 
             @Override
-            public void onFailure(Call<InfluencerResource> call, Throwable t) {
+            public void onFailure(Call<InfluencerContent> call, Throwable t) {
                 Log.d("CurrentUser","No Influencer");
                 call.cancel();
             }
@@ -73,7 +83,6 @@ public class CurrentUser {
                 Log.d("CurrentUser",response.code()+" => response code");
                 CompanyResource companyResource = response.body();
                 type = "Company";
-                Log.d("ProfileViewFrag","ThreadID in Curre -> " +Thread.currentThread().getId());
             }
 
             @Override

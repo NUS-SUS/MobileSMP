@@ -1,45 +1,39 @@
 package com.example.mobilesmp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mobilesmp.databinding.FragmentProfileViewBinding;
-import com.example.mobilesmp.ui.profile.ProfileEditFragment;
+import com.example.mobilesmp.ui.profile.TwoHorizontalTextViewsAdapter;
+import com.example.mobilesmp.ui.profile.TwoStrings;
 import com.example.retrofit.smp.CurrentUser;
-import com.example.retrofit.smp.FeedbackContent;
-import com.example.retrofit.smp.FeedbackResource;
+import com.example.retrofit.smp.InfluencerContent;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileViewFragment extends Fragment {
 
+    TwoHorizontalTextViewsAdapter twoHorizontalTextViewsAdapter;
+    List<TwoStrings> twoStringsList = new ArrayList<>();
     FragmentProfileViewBinding binding;
-    TextView textView;
+    ListView listView;
     View view;
-    APIInterface apiInterface;
-    String FILENAME = "Draft";
-    CurrentUser currentUser = new CurrentUser();
+    final String[] inArray = {"Name","Nationlity","Category","Tags","Email","Account Type","Birth Date","Language","Social Media","Contact Number","Block Number","Street name","Unit Number","Postal Code"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,28 +41,39 @@ public class ProfileViewFragment extends Fragment {
         Log.d("ProfileViewFrag","OnCreateView");
         binding = FragmentProfileViewBinding.inflate(inflater, container, false);
         view = inflater.inflate(R.layout.fragment_profile_view, container, false);
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
 
+    private BroadcastReceiver aLBReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            twoStringsList.clear();
+            InfluencerContent influencerContent = new InfluencerContent();
+            String[] s = influencerContent.getStringArray();
+            for (int i = 0; i < 14;i++){
+                twoStringsList.add(new TwoStrings(inArray[i],s[i]));
+            }
+            twoHorizontalTextViewsAdapter.notifyDataSetChanged();
+        }
+    };
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d("ProfileViewFrag","ThreadID in frag -> " +Thread.currentThread().getId());
-        Log.d("ProfileViewFrag","OnViewCraeted");
-
-        Log.d("ProfileViewFrag","Profile -> "+currentUser.getType());
-        if (currentUser.getType().equals("Influencer")){
-            textView.setText("Influencer");
-        }else if (currentUser.getType().equals("Company")){
-            textView.setText("Company");
-        }else{
-            NavHostFragment.findNavController(ProfileViewFragment.this)
-                    .navigate(R.id.action_profileViewFragment_to_profileEditFragment);
+        Log.d("ProfileViewFrag","OnViewCreated");
+        listView = (ListView) view.findViewById(R.id.listView);
+        for (int i = 0; i < 14;i++){
+            twoStringsList.add(new TwoStrings(inArray[i]," "));
         }
-        textView = (TextView) view.findViewById(R.id.textView);
+        twoHorizontalTextViewsAdapter = new TwoHorizontalTextViewsAdapter(getContext(), R.layout.profile_list, twoStringsList);
+        listView.setAdapter(twoHorizontalTextViewsAdapter);
 
 
 
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(aLBReceiver,
+                new IntentFilter("InfluencerEvent"));
+/*
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +81,8 @@ public class ProfileViewFragment extends Fragment {
                         .navigate(R.id.action_profileViewFragment_to_profileEditFragment);
             }
         });
+
+ */
 
     }
 

@@ -96,38 +96,55 @@ public class InfluencerContent {
 
     @Override
     public String toString() {
-        return "InfluencerContent{" +
-                "unitNumber='" + i_unitNumber + '\'' +
-                ", language=" + i_language +
-                ", postalCode=" + i_postalCode +
-                ", blockNumber='" + i_blockNumber + '\'' +
-                ", contactNumber=" + i_contactNumber +
-                ", userType='" + i_userType + '\'' +
-                ", tags=" + i_tags +
-                ", category='" + i_category + '\'' +
-                ", nationality='" + i_nationality + '\'' +
-                ", fullName='" + i_fullName + '\'' +
-                ", streetName='" + i_streetName + '\'' +
-                ", socialMedia='" + i_socialMedia + '\'' +
-                ", birthdate='" + i_birthdate + '\'' +
-                ", email='" + i_email + '\'' +
-                '}';
+        return "Name\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_fullName + "\n\n" +
+                "Nationality\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_nationality + "\n\n" +
+                "Category\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_category + "\n\n" +
+                "Tags\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_tags + "\n\n" +
+                "Email\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_email + "\n\n" +
+                "Account Type\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_userType + "\n\n" +
+                "Birth Date\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_birthdate + "\n\n" +
+                "Language\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_language + "\n\n" +
+                "Social Media\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_socialMedia + "\n\n" +
+                "Contact Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_contactNumber + "\n\n" +
+                "Block Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_blockNumber + "\n\n" +
+                "Street Name\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_streetName + "\n\n" +
+                "Unit Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'" + i_unitNumber + "\n\n" +
+                "Postal Code\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_postalCode;
+    }
+
+    public String[] getStringArray(){
+        String[] s = new String[14];
+        s[0]=i_fullName;
+        s[1] = i_nationality;
+        s[2] =  i_category;
+        s[3] = i_tags.toString();
+        s[4] = i_email;
+        s[5] = i_userType;
+        s[6] = i_birthdate;
+        s[7] = i_language.toString();
+        s[8] = i_socialMedia;
+        s[9] = i_contactNumber.toString();
+        s[10] = i_blockNumber;
+        s[11] = i_streetName;
+        s[12] = i_unitNumber;
+        s[13] = i_postalCode.toString();
+        return s;
     }
 
     public void setValues() {
-        this.unitNumber = i_unitNumber;
-        this.language = i_language;
-        this.postalCode = i_postalCode;
-        this.blockNumber = i_blockNumber;
-        this.contactNumber = i_contactNumber;
-        this.userType = i_userType;
-        this.tags = i_tags;
-        this.category = i_category;
-        this.nationality = i_nationality;
-        this.fullName = i_fullName;
-        this.streetName = i_streetName;
-        this.socialMedia = i_socialMedia;
-        this.birthdate = i_birthdate;
-        this.email = i_email;
+        i_unitNumber = unitNumber;
+        i_language = language;
+        i_postalCode = postalCode;
+        i_blockNumber = blockNumber;
+        i_contactNumber = contactNumber;
+        i_userType = userType;
+        i_tags = tags;
+        i_category = category;
+        i_nationality = nationality;
+        i_fullName = fullName;
+        i_streetName = streetName;
+        i_socialMedia = socialMedia;
+        i_birthdate = birthdate;
+        i_email = email;
     }
 }
