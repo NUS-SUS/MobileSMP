@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentProfileEditBinding;
@@ -67,13 +68,19 @@ public class ProfileEditFragment extends Fragment {
                             .navigate(R.id.action_profileEditFragment_to_profileCompanyFragment);
                 }
                 else if (spinner1.getSelectedItem().toString().equals("Influencer")){
+                    try{
+                        InfluencerContent influencerContent = new InfluencerContent(email.getText().toString(),Integer.parseInt(contactNumber.getText().toString()),blockNumber.getText().toString(),
+                                streetName.getText().toString(),unitNumber.getText().toString(),Integer.parseInt(postalCode.getText().toString()));
+                        if ((email.getText().toString().equals(""))||(contactNumber.getText().toString().equals(""))||(blockNumber.getText().toString().equals(""))||(streetName.getText().toString().equals(""))||
+                                (unitNumber.getText().toString().equals(""))||(postalCode.getText().toString().equals("")))
+                            throw new Exception("Error");
 
-                    InfluencerContent influencerContent = new InfluencerContent(email.getText().toString(),Integer.parseInt(contactNumber.getText().toString()),blockNumber.getText().toString(),
-                            streetName.getText().toString(),unitNumber.getText().toString(),Integer.parseInt(postalCode.getText().toString()));
+                        NavHostFragment.findNavController(ProfileEditFragment.this)
+                                .navigate(R.id.action_profileEditFragment_to_profileInfluencerFragment);
+                    }catch(Exception e){
+                        Toast.makeText(getContext(),"Some fields are empty",Toast.LENGTH_SHORT).show();
+                    }
 
-
-                    NavHostFragment.findNavController(ProfileEditFragment.this)
-                            .navigate(R.id.action_profileEditFragment_to_profileInfluencerFragment);
                 }
             }
         });

@@ -11,7 +11,7 @@ import retrofit2.Response;
 
 public class CurrentUser {
     private static String userName;
-    private static String userEmail;
+    private static String userEmail = "test@gmail.com";
     private static String type = "None";
 
     APIInterface apiInterface;
@@ -56,6 +56,7 @@ public class CurrentUser {
                 Log.d("CurrentUser",response.code()+" => response code");
                 InfluencerResource influencerResource = response.body();
                 type = "Influencer";
+                Log.d("ProfileViewFrag","ThreadID in Curre -> " +Thread.currentThread().getId());
             }
 
             @Override
@@ -72,6 +73,7 @@ public class CurrentUser {
                 Log.d("CurrentUser",response.code()+" => response code");
                 CompanyResource companyResource = response.body();
                 type = "Company";
+                Log.d("ProfileViewFrag","ThreadID in Curre -> " +Thread.currentThread().getId());
             }
 
             @Override

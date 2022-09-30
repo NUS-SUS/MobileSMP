@@ -117,23 +117,23 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/border"
         android:alpha="0.3"
+        android:src="@drawable/border"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/border"
         android:alpha="0.3"
+        android:src="@drawable/border"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/autoCompletetextView24" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -183,9 +183,12 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:textSize="15dp"
-        android:hint="  Select date->"
         android:background="@android:drawable/editbox_background"
+        android:drawablePadding="16dp"
+        android:hint="  Select date->"
+        android:padding="12dp"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView1"
         app:layout_constraintStart_toEndOf="@+id/textView1"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
@@ -240,10 +243,13 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:textSize="15dp"
-        android:hint="Select language"
-        android:inputType="textMultiLine"
+        android:background="@android:drawable/editbox_background"
         android:completionThreshold="1"
+        android:hint="Select language"
+        android:textSize="15dp"
+        android:drawablePadding="16dp"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 

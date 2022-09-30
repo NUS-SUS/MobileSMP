@@ -57,7 +57,7 @@ public class InfluencerContent {
     public static Integer i_postalCode;
     public static String i_blockNumber;
     public static Integer i_contactNumber;
-    public static String i_userType;
+    public static String i_userType = "Influencer";
     public static List<String> i_tags = null;
     public static String i_category;
     public static String i_nationality;
@@ -81,6 +81,7 @@ public class InfluencerContent {
         this.i_postalCode = postalCode;
 
     }
+
     public InfluencerContent(String birthdate, String category, List<String> tags, String nationality,
                              List<String> language, String socialMedia, String fullName){
         this.i_birthdate = birthdate;
@@ -113,4 +114,20 @@ public class InfluencerContent {
                 '}';
     }
 
+    public void setValues() {
+        this.unitNumber = i_unitNumber;
+        this.language = i_language;
+        this.postalCode = i_postalCode;
+        this.blockNumber = i_blockNumber;
+        this.contactNumber = i_contactNumber;
+        this.userType = i_userType;
+        this.tags = i_tags;
+        this.category = i_category;
+        this.nationality = i_nationality;
+        this.fullName = i_fullName;
+        this.streetName = i_streetName;
+        this.socialMedia = i_socialMedia;
+        this.birthdate = i_birthdate;
+        this.email = i_email;
+    }
 }

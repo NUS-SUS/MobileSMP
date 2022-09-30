@@ -87,7 +87,7 @@ public class NavHomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.nav_home, menu);
 
         testView = (TextView) findViewById(R.id.textView);
-        testView.setText(username);
+        testView.setText(CurrentUser.getUserEmail());
 
 
         return true;

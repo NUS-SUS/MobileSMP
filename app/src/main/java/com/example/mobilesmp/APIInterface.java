@@ -33,6 +33,9 @@ public interface APIInterface {
     @GET("/nussmp/classifications")
     Call<ClassificationsResource> doGetClassificationsResources();
 
+    @POST("/nussmp/influencer")
+    Call<InfluencerContent> submitInfluencer(@Body InfluencerContent influencer);
+
     @GET("/api/unknown")
     Call<MultipleResource> doGetListResources();
 
