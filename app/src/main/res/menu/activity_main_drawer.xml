@@ -20,5 +20,10 @@
             android:id="@+id/feedbackFragment"
             android:icon="@drawable/ic_menu_feedback"
             android:title="@string/menu_feedback" />
+        <item
+            android:id="@+id/payment1Fragment"
+            android:icon="@drawable/ic_menu_credit"
+            android:title="@string/menu_credit" />
+
     </group>
 </menu>

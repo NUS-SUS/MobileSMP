@@ -50,6 +50,13 @@ public class NavHomeActivity extends AppCompatActivity {
             Log.d("UserEmail Logging", userEmail);
             CurrentUser.setUserName(username);
             CurrentUser.setUserEmail(userEmail);
+        }else{
+            if (CurrentUser.getUserName()!=null) {
+                username = CurrentUser.getUserName();
+            }
+            if (CurrentUser.getUserEmail()!=null) {
+                userEmail = CurrentUser.getUserEmail();
+            }
         }
 
 
