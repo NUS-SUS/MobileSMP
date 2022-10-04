@@ -1,9 +1,14 @@
 package com.example.mobilesmp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,20 +25,10 @@ import java.io.File;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
 
-//        Amplify.Auth.fetchAuthSession(
-//                result -> Log.i("AmplifyQuickstart", result.toString()),
-//                error -> Log.e("AmplifyQuickstart", error.toString())
-//        );
-//        Amplify.Auth.signInWithSocialWebUI(AuthProvider.facebook(), this,
-//                result -> Log.i("AuthQuickstart", result.toString()),
-//                error -> Log.e("AuthQuickstart", error.toString())
-//        );
         AuthUser currentUser = Amplify.Auth.getCurrentUser();
 
         Intent intent;

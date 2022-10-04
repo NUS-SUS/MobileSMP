@@ -79,4 +79,18 @@
             android:id="@+id/action_profileViewFragment_to_profileEditFragment"
             app:destination="@id/profileEditFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/payment1Fragment"
+        android:name="com.example.mobilesmp.ui.payment.Payment1Fragment"
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment1">
+    <action
+        android:id="@+id/action_payment1Fragment_to_payment2Fragment"
+        app:destination="@id/payment2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/payment2Fragment"
+        android:name="com.example.mobilesmp.ui.payment.Payment2Fragment"
+        android:label="Payment"
+        tools:layout="@layout/fragment_payment2"/>
 </navigation>

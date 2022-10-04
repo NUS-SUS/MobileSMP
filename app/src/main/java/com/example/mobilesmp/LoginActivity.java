@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword.getText().toString();
         Intent intent = new Intent(this, NavHomeActivity.class);
         intent.putExtra("Username", txtUsername.getText().toString());
-        intent.putExtra("UserEmail", "test@email.com");
+        intent.putExtra("UserEmail", "smp.marketing.nus.fb@gmail.com");
         CampaignContent campaignContent = new CampaignContent();
         campaignContent.getAPICampaigns();
         startActivity(intent);
