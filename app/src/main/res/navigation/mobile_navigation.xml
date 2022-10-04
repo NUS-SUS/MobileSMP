@@ -69,7 +69,7 @@
         tools:layout="@layout/fragment_profile_influencer" />
     <fragment
         android:id="@+id/profileViewFragment"
-        android:name="com.example.mobilesmp.ProfileViewFragment"
+        android:name="com.example.mobilesmp.ui.profile.ProfileViewFragment"
         android:label="Profile View"
         tools:layout="@layout/fragment_profile_view" >
         <action

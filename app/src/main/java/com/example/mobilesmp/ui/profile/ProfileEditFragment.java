@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentProfileEditBinding;
+import com.example.retrofit.smp.CompanyResource;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.InfluencerContent;
 
@@ -64,8 +65,19 @@ public class ProfileEditFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (spinner1.getSelectedItem().toString().equals("Company")) {
-                    NavHostFragment.findNavController(ProfileEditFragment.this)
-                            .navigate(R.id.action_profileEditFragment_to_profileCompanyFragment);
+                    try{
+                        CompanyResource companyResource = new CompanyResource(email.getText().toString(),contactNumber.getText().toString(),blockNumber.getText().toString(),
+                                streetName.getText().toString(),unitNumber.getText().toString(),postalCode.getText().toString());
+                        if ((email.getText().toString().equals(""))||(contactNumber.getText().toString().equals(""))||(blockNumber.getText().toString().equals(""))||(streetName.getText().toString().equals(""))||
+                                (unitNumber.getText().toString().equals(""))||(postalCode.getText().toString().equals("")))
+                            throw new Exception("Error");
+
+                        NavHostFragment.findNavController(ProfileEditFragment.this)
+                                .navigate(R.id.action_profileEditFragment_to_profileCompanyFragment);
+                    }catch(Exception e){
+                        Toast.makeText(getContext(),"Some fields are empty",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 else if (spinner1.getSelectedItem().toString().equals("Influencer")){
                     try{

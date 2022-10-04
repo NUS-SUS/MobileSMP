@@ -323,14 +323,14 @@ public class ProfileInfluencerFragment extends Fragment {
                             (fname.getText().toString().equals("")))
                         throw new Exception("Error");
                     else
-                        influencerContent.setValues();
+                        influencerContent.setBodyValues();
 
                     apiInterface = APIClient.getClient().create(APIInterface.class);
                     Call<InfluencerContent> call1 = apiInterface.submitInfluencer(influencerContent);
                     call1.enqueue(new Callback<InfluencerContent>() {
                         @Override
                         public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
-                            Log.d("InfluencerFramgent","Save");
+                            Log.d("InfluencerFragment","Save");
                             Toast.makeText(getContext(), "Profile Save", Toast.LENGTH_SHORT).show();
                         }
 

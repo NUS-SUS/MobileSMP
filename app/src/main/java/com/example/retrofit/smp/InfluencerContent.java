@@ -5,21 +5,25 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class InfluencerContent {
-    public InfluencerContent(String unitNumber, List<String> language, Integer postalCode, String blockNumber, Integer contactNumber, String userType, List<String> tags, String category, String nationality, String fullName, String streetName, String socialMedia, String birthdate, String email) {
-        this.unitNumber = unitNumber;
-        this.language = language;
-        this.postalCode = postalCode;
-        this.blockNumber = blockNumber;
-        this.contactNumber = contactNumber;
-        this.userType = userType;
-        this.tags = tags;
-        this.category = category;
-        this.nationality = nationality;
-        this.fullName = fullName;
-        this.streetName = streetName;
-        this.socialMedia = socialMedia;
-        this.birthdate = birthdate;
-        this.email = email;
+
+    @Override
+    public String toString() {
+        return "InfluencerContent{" +
+                "unitNumber='" + unitNumber + '\'' +
+                ", language=" + language +
+                ", postalCode=" + postalCode +
+                ", blockNumber='" + blockNumber + '\'' +
+                ", contactNumber=" + contactNumber +
+                ", userType='" + userType + '\'' +
+                ", tags=" + tags +
+                ", category='" + category + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", socialMedia='" + socialMedia + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
     @SerializedName("UNIT_NUMBER")
@@ -94,23 +98,6 @@ public class InfluencerContent {
 
     }
 
-    @Override
-    public String toString() {
-        return "Name\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_fullName + "\n\n" +
-                "Nationality\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_nationality + "\n\n" +
-                "Category\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_category + "\n\n" +
-                "Tags\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_tags + "\n\n" +
-                "Email\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_email + "\n\n" +
-                "Account Type\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_userType + "\n\n" +
-                "Birth Date\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_birthdate + "\n\n" +
-                "Language\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_language + "\n\n" +
-                "Social Media\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_socialMedia + "\n\n" +
-                "Contact Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_contactNumber + "\n\n" +
-                "Block Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_blockNumber + "\n\n" +
-                "Street Name\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_streetName + "\n\n" +
-                "Unit Number\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'" + i_unitNumber + "\n\n" +
-                "Postal Code\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + i_postalCode;
-    }
 
     public String[] getStringArray(){
         String[] s = new String[14];
@@ -146,5 +133,22 @@ public class InfluencerContent {
         i_socialMedia = socialMedia;
         i_birthdate = birthdate;
         i_email = email;
+    }
+
+    public void setBodyValues() {
+        unitNumber = i_unitNumber;
+        language = i_language;
+        postalCode = i_postalCode;
+        blockNumber = i_blockNumber;
+        contactNumber = i_contactNumber;
+        userType = i_userType;
+        tags = i_tags;
+        category = i_category;
+        nationality = i_nationality;
+        fullName = i_fullName;
+        streetName = i_streetName;
+        socialMedia = i_socialMedia;
+        birthdate = i_birthdate;
+        email = i_email;
     }
 }

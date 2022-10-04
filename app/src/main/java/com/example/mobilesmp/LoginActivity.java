@@ -19,6 +19,7 @@ import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
 import com.example.retrofit.smp.ClassificationsResource;
+import com.example.retrofit.smp.CompanyResource;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackResource;
 import com.example.retrofit.smp.InfluencerContent;
@@ -116,12 +117,31 @@ public class LoginActivity extends AppCompatActivity {
                 InfluencerContent influencerContent = response.body();
                 influencerContent.setValues();
                 Intent intent = new Intent("InfluencerEvent");
-                Toast.makeText(getApplicationContext(),"Profile Influencer Retrieved",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Influencer Profile Retrieved",Toast.LENGTH_SHORT).show();
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
             }
 
             @Override
             public void onFailure(Call<InfluencerContent> call, Throwable t) {
+                Log.d("CurrentUser","No Influencer");
+                call.cancel();
+            }
+        });
+
+        Call<CompanyResource> call2 = apiInterface.doGetCompanyResources(currentUser.getUserEmail());
+        call2.enqueue(new Callback<CompanyResource>() {
+            @Override
+            public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
+                Log.d("CurrentUser",response.code()+" => response code");
+                CompanyResource companyResource = response.body();
+                companyResource.setValues();
+                Intent intent = new Intent("CompanyEvent");
+                Toast.makeText(getApplicationContext(),"Company Profile Retrieved",Toast.LENGTH_SHORT).show();
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+            }
+
+            @Override
+            public void onFailure(Call<CompanyResource> call, Throwable t) {
                 Log.d("CurrentUser","No Influencer");
                 call.cancel();
             }
