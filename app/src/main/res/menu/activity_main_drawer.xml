@@ -13,6 +13,9 @@
             android:icon="@drawable/ic_menu_discover"
             android:title="@string/menu_discover" />
         <item
+            android:icon="@drawable/ic_menu_campaign"
+            android:title="@string/menu_campaign" />
+        <item
             android:id="@+id/profileViewFragment"
             android:icon="@drawable/ic_menu_profile"
             android:title="@string/menu_profile" />

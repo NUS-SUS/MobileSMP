@@ -66,7 +66,7 @@ public class ProfileViewFragment extends Fragment {
             }
             twoHorizontalTextViewsAdapter.notifyDataSetChanged();
             NavHostFragment.findNavController(ProfileViewFragment.this)
-                    .navigate(R.id.action_profileEditFragment_to_profileViewFragment);
+                    .navigate(R.id.action_profileEditFragment_to_nav_home);
         }
     };
 
@@ -81,7 +81,7 @@ public class ProfileViewFragment extends Fragment {
             }
             twoHorizontalTextViewsAdapter.notifyDataSetChanged();
             NavHostFragment.findNavController(ProfileViewFragment.this)
-                    .navigate(R.id.action_profileEditFragment_to_profileViewFragment);
+                    .navigate(R.id.action_profileEditFragment_to_nav_home);
         }
     };
 

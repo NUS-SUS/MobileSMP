@@ -2,7 +2,9 @@ package com.example.mobilesmp;
 
 import static com.example.mobilesmp.Constants.testEnvironment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobilesmp.databinding.ActivityNavHomeBinding;
+
+import java.io.File;
 
 public class NavHomeActivity extends AppCompatActivity {
 
@@ -140,6 +144,14 @@ public class NavHomeActivity extends AppCompatActivity {
     private void onLogoutSuccess() {
         //Go to the chat screen
         Log.d("LOGOUT", "State: Success");
+        File dir = new File(getApplicationContext().getFilesDir().getParent() + "/shared_prefs/");
+        String[] children = dir.list();
+        for (int i = 0; i < children.length; i++) {
+            // clear each preference file
+            getApplicationContext().getSharedPreferences(children[i].replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit();
+            //delete the file
+            new File(dir, children[i]).delete();
+        }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
