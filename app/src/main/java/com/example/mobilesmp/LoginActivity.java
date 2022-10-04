@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
         Call<InfluencerContent> call1 = apiInterface.doGetInfluenceResources(currentUser.getUserEmail());
+        CurrentUser finalCurrentUser = currentUser;
         call1.enqueue(new Callback<InfluencerContent>() {
             @Override
             public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
@@ -119,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent("InfluencerEvent");
                 Toast.makeText(getApplicationContext(),"Influencer Profile Retrieved",Toast.LENGTH_SHORT).show();
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+                finalCurrentUser.setType("Influencer");
             }
 
             @Override
@@ -138,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent("CompanyEvent");
                 Toast.makeText(getApplicationContext(),"Company Profile Retrieved",Toast.LENGTH_SHORT).show();
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+                finalCurrentUser.setType("Company");
             }
 
             @Override

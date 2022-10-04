@@ -18,8 +18,12 @@ public class CurrentUser {
     private static String userName;
     private static String userEmail = "test@gmail.com";
 
-    public static void setType(String type) {
+    public void setType(String type) {
         CurrentUser.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     private static String type = "None";
@@ -52,9 +56,6 @@ public class CurrentUser {
         userEmail = userEmailInput;
     }
 
-    public String getType() {
-        return type;
-    }
 
     public void getUserTypeAPI(){
         apiInterface = APIClient.getClient().create(APIInterface.class);

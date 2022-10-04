@@ -28,7 +28,7 @@ import java.util.List;
 public class ProfileEditFragment extends Fragment {
 
     FragmentProfileEditBinding binding;
-    CurrentUser currentUser = new CurrentUser();;
+    CurrentUser currentUser = new CurrentUser();
     TextView email;
     final String[] ACCOUNTTYPES = {"","Influencer","Company"};
     EditText contactNumber,blockNumber,streetName,unitNumber,postalCode;
@@ -49,10 +49,18 @@ public class ProfileEditFragment extends Fragment {
         email.setText(currentUser.getUserEmail());
 
         Spinner spinner1 = (Spinner) view.findViewById(R.id.autoCompletetextView22);
-
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, ACCOUNTTYPES);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(dataAdapter1);
+
+        if (currentUser.getType().equals("Influencer")){
+            spinner1.setSelection(1);
+            spinner1.setEnabled(false);
+        }
+        else if (currentUser.getType().equals("Company")){
+            spinner1.setSelection(2);
+            spinner1.setEnabled(false);
+        }
 
         contactNumber = (EditText) view.findViewById(R.id.textView23);
         blockNumber = (EditText) view.findViewById(R.id.textView24);

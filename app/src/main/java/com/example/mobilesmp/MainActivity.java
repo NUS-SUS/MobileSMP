@@ -40,17 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentUser == null) {
             // Go to the login screen
-            // clear shared pref files
-            File dir = new File(getApplicationContext().getFilesDir().getParent() + "/shared_prefs/");
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                // clear each preference file
-                getApplicationContext().getSharedPreferences(children[i].replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit();
-                //delete the file
-                new File(dir, children[i]).delete();
-            }
-
-
             intent = new Intent(getApplicationContext(), LoginActivity.class);
         } else {
             // call async Campaign API and store it inside first

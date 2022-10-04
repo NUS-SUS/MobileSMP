@@ -36,12 +36,18 @@ public class ProfileViewFragment extends Fragment {
     FragmentProfileViewBinding binding;
     ListView listView;
     View view;
+    CurrentUser currentUser = new CurrentUser();
     final String[] inArray = {"Name","Nationlity","Category","Tags","Email","Account Type","Birth Date","Language","Social Media","Contact Number","Block Number","Street name","Unit Number","Postal Code"};
     final String[] coArray = {"Company Name","Nationlity","Campaign Funds","Email","Account Type","Contact Number","Block Number","Street name","Unit Number","Postal Code"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("ProfileViewFrag","OnCreateView");
+
+        if (currentUser.getType().equals("None")){
+            NavHostFragment.findNavController(ProfileViewFragment.this)
+                    .navigate(R.id.action_profileViewFragment_to_profileEditFragment);
+        }
         binding = FragmentProfileViewBinding.inflate(inflater, container, false);
         view = inflater.inflate(R.layout.fragment_profile_view, container, false);
 
@@ -59,6 +65,8 @@ public class ProfileViewFragment extends Fragment {
                 twoStringsList.add(new TwoStrings(inArray[i],s[i]));
             }
             twoHorizontalTextViewsAdapter.notifyDataSetChanged();
+            NavHostFragment.findNavController(ProfileViewFragment.this)
+                    .navigate(R.id.action_profileEditFragment_to_profileViewFragment);
         }
     };
 
@@ -72,11 +80,15 @@ public class ProfileViewFragment extends Fragment {
                 twoStringsList.add(new TwoStrings(coArray[i],s[i]));
             }
             twoHorizontalTextViewsAdapter.notifyDataSetChanged();
+            NavHostFragment.findNavController(ProfileViewFragment.this)
+                    .navigate(R.id.action_profileEditFragment_to_profileViewFragment);
         }
     };
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         Log.d("ProfileViewFrag","OnViewCreated");
         listView = (ListView) view.findViewById(R.id.listView);
         twoHorizontalTextViewsAdapter = new TwoHorizontalTextViewsAdapter(getContext(), R.layout.profile_list, twoStringsList);
