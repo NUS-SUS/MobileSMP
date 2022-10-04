@@ -35,6 +35,8 @@
     <string name="payment_desc2">Checking on your payment status. Please wait. Otherwise click on RETURN HOME to cancel</string>
     <string name="payment_fields"></string>
     <string name="payment_values"></string>
+    <string name="home_desc1">Welcome \nto \nSocial \nMarketing \nPortal!</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
