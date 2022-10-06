@@ -85,9 +85,10 @@ public class NavHomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileViewFragment, R.id.feedbackFragment)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.itemFragment, R.id.profileViewFragment, R.id.feedbackFragment, R.id.payment1Fragment, R.id.payment2Fragment)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_home);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
