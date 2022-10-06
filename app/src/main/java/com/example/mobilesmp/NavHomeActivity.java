@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -146,8 +147,20 @@ public class NavHomeActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG)
                     .show();
         });*/
+        clearSharedPreferences(this);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public static void clearSharedPreferences(Context ctx){
+        File dir = new File(ctx.getFilesDir().getParent() + "/shared_prefs/");
+        String[] children = dir.list();
+        for (int i = 0; i < children.length; i++) {
+            // clear each preference file
+            ctx.getSharedPreferences(children[i].replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit();
+            //delete the file
+            new File(dir, children[i]).delete();
+        }
     }
 
     private void onLogoutSuccess() {
