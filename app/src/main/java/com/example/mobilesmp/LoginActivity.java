@@ -174,14 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                 error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
         );
     }
-    public void currentAccountPopulate(){
-        Log.d("LOGIN", "State: Success");
 
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> setAttribute(attributes),
-                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
-        );
-    }
 
     public void onTestAccount(View view) {
         txtUsername.getText().toString();
