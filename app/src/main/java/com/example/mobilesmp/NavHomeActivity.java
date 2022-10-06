@@ -44,6 +44,7 @@ public class NavHomeActivity extends AppCompatActivity {
 
         // Get Payment ID example
         //PaymentExample paymentExample = new PaymentExample();
+        Log.d("NavHomeActivity", "called first");
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

@@ -32,11 +32,14 @@ public class MainActivity extends AppCompatActivity {
         AuthUser currentUser = Amplify.Auth.getCurrentUser();
 
         Intent intent;
-
+        Log.d("MainActivity", "called first");
         if (currentUser == null) {
+            Log.d("MainActivity", "current User null");
             // Go to the login screen
             intent = new Intent(getApplicationContext(), LoginActivity.class);
         } else {
+            Log.d("MainActivity", "current User not null");
+            new LoginActivity().currentAccountPopulate();
             // call async Campaign API and store it inside first
             CampaignContent campaignContent = new CampaignContent();
             campaignContent.getAPICampaigns();
