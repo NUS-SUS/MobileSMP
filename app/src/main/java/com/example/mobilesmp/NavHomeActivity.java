@@ -142,11 +142,12 @@ public class NavHomeActivity extends AppCompatActivity {
     }
 
     private void onLogoutError(AuthException e) {
-        this.runOnUiThread(() -> {
+/*        this.runOnUiThread(() -> {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG)
                     .show();
-        });
-
+        });*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private void onLogoutSuccess() {

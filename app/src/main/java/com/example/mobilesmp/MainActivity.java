@@ -159,13 +159,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    private void onLoginSuccess(AuthSignInResult authSignInResult) {
-        Log.d("LOGIN", "State: Success");
-
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> setAttribute(attributes),
-                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
-        );
-    }
 
 }
