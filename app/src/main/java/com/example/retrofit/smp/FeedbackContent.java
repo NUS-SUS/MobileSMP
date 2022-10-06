@@ -20,15 +20,18 @@ public class FeedbackContent {
     public Integer closeDate;
 
 
-    public FeedbackContent(String message,String assigned,String feedbackId,String companiesId,
-                            Integer submittedDate,String influencersId,Integer closeDate){
+    public FeedbackContent(String message,String feedbackId,
+                            Integer submittedDate,String influencersId){
         this.message = message;
-        this.assigned = assigned;
+        this.feedbackId = feedbackId;
+        this.submittedDate = submittedDate;
+        this.influencersId = influencersId;
+    }
+    public FeedbackContent(String message,String feedbackId,String companiesId,
+                           Integer submittedDate){
+        this.message = message;
         this.feedbackId = feedbackId;
         this.companiesId = companiesId;
         this.submittedDate = submittedDate;
-        this.influencersId = influencersId;
-        this.closeDate = closeDate;
     }
-
 }

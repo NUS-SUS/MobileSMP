@@ -1,5 +1,8 @@
 package com.example.mobilesmp;
 
+
+import android.util.Log;
+
 import com.example.retrofit.smp.*;
 
 import retrofit2.Call;
@@ -7,36 +10,38 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface APIInterface {
 
-    @GET("/nussmp/campaigns")
+    @GET("/nussmpmobile/campaigns")
     Call<CampaignResource> doGetCampaignsResources();
 
-    @GET("/nussmp/feedbacks")
+    @GET("/nussmpmobile/feedbacks")
     Call<FeedbackResource> doGetFeedbacksResources();
 
-    @POST("/nussmp/feedback")
-    Call<FeedbackContent> submitFeedback(@Body FeedbackContent feedback);
+    @POST("/nussmpmobile/feedback")
+    Call<FeedbackContent> submitFeedback(@Header ("Authorization") String idToken,@Body FeedbackContent feedback);
 
-    @GET("/nussmp/payment")
+    @GET("/nussmpmobile/payment")
     Call<PaymentContent> doGetPaymentResources(@Query("PAYMENTS_ID") String payment_id);
 
-    @GET("/nussmp/company")
+    @GET("/nussmpmobile/company")
     Call<CompanyResource> doGetCompanyResources(@Query("EMAIL") String email);
 
-    @GET("/nussmp/influencer")
+    @GET("/nussmpmobile/influencer")
     Call<InfluencerContent> doGetInfluenceResources(@Query("EMAIL") String email);
 
-    @GET("/nussmp/classifications")
+    @GET("/nussmpmobile/classifications")
     Call<ClassificationsResource> doGetClassificationsResources();
 
-    @POST("/nussmp/influencer")
+    @POST("/nussmpmobile/influencer")
     Call<InfluencerContent> submitInfluencer(@Body InfluencerContent influencer);
 
-    @POST("/nussmp/company")
+    @POST("/nussmpmobile/company")
     Call<CompanyResource> submitCompany(@Body CompanyResource company);
 
     @GET("/api/unknown")

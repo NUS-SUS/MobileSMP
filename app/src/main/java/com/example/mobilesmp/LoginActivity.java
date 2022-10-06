@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.amplifyframework.auth.AuthException;
 import com.amplifyframework.auth.AuthProvider;
 import com.amplifyframework.auth.AuthUserAttribute;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.auth.result.AuthSignInResult;
 import com.amplifyframework.core.Amplify;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
@@ -172,6 +173,25 @@ public class LoginActivity extends AppCompatActivity {
         Amplify.Auth.fetchUserAttributes(
                 attributes -> setAttribute(attributes),
                 error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+        );
+        Amplify.Auth.fetchAuthSession(
+                result -> {
+                    AWSCognitoAuthSession cognitoAuthSession = (AWSCognitoAuthSession) result;
+                    switch(cognitoAuthSession.getIdentityId().getType()) {
+                        case SUCCESS:
+                            String[] value = cognitoAuthSession.getUserPoolTokens().getValue().toString().split(",");
+                            for (String x:value){
+                                if (x.contains("idToken=")){
+                                    CurrentUser userNow = new CurrentUser();
+                                    userNow.setIdToken(x.substring(9,x.length()));
+                                }
+                            }
+                            break;
+                        case FAILURE:
+                            Log.i("AuthQuickStart", "IdentityId not present because: " + cognitoAuthSession.getIdentityId().getError().toString());
+                    }
+                },
+                error -> Log.e("AuthQuickStart", error.toString())
         );
     }
 

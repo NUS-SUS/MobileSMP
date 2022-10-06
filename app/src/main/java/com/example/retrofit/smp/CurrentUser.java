@@ -18,6 +18,16 @@ public class CurrentUser {
     private static String userName;
     private static String userEmail = "test@gmail.com";
 
+    public static String getIdToken() {
+        return idToken;
+    }
+
+    public static void setIdToken(String idToken) {
+        CurrentUser.idToken = idToken;
+    }
+
+    private static String idToken = "";
+
     public void setType(String type) {
         CurrentUser.type = type;
     }

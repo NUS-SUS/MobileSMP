@@ -15,6 +15,7 @@ import com.example.mobilesmp.APIClient;
 import com.example.mobilesmp.APIInterface;
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentFeedbackBinding;
+import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackContent;
 import com.example.retrofit.smp.FeedbackResource;
 
@@ -26,6 +27,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +41,7 @@ public class FeedbackFragment extends Fragment {
     View view;
     APIInterface apiInterface;
     String FILENAME = "Draft";
+    CurrentUser currentUser = new CurrentUser();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,11 +88,20 @@ public class FeedbackFragment extends Fragment {
         binding.buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+                LocalDate localDate = LocalDate.now();
                 FeedbackResource feedbackResource = new FeedbackResource();
-                FeedbackContent feedback = new FeedbackContent(editText.getText().toString(),"", feedbackResource.count+1+"","",
-                                                        1,"",1 );
+                FeedbackContent feedback;
+                if (currentUser.getType().equals("Company"))
+                    feedback = new FeedbackContent(editText.getText().toString(),feedbackResource.count+1+"", currentUser.getUserName(),Integer.parseInt(dtf.format(localDate)));
+                else
+                    feedback = new FeedbackContent(editText.getText().toString(),feedbackResource.count+1+"", Integer.parseInt(dtf.format(localDate)),currentUser.getUserName());
+
+
+
+
                 apiInterface = APIClient.getClient().create(APIInterface.class);
-                Call<FeedbackContent> call1 = apiInterface.submitFeedback(feedback);
+                Call<FeedbackContent> call1 = apiInterface.submitFeedback(currentUser.getIdToken(),feedback);
                 call1.enqueue(new Callback<FeedbackContent>() {
                     @Override
                     public void onResponse(Call<FeedbackContent> call, Response<FeedbackContent> response) {
