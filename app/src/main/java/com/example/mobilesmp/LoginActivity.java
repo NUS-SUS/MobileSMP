@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtUsername;
     EditText txtPassword;
 
-    Boolean social = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
     public void onPressLogin(View view) {
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
-        if(testEnvironment){
-            this.onTestAccount(view);
-        }else{
+//        if(testEnvironment){
+//            this.onTestAccount(view);
+//        }else{
             Amplify.Auth.signIn(
                     txtUsername.getText().toString(),
                     txtPassword.getText().toString(),
@@ -57,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     this::onLoginError
 
             );
-        }
+//        }
     }
 
 
@@ -100,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("UserEmail", x.getValue());
 
                     currentUser = new CurrentUser(x.getValue(),x.getValue());
-                    //currentUser.getUserTypeAPI();
                 }else{
                     Log.d("AuthEmail", "Other Keys = " + x.getKey().getKeyString());
                     Log.d("AuthEmail", "Other Values = " + x.getValue());
@@ -169,6 +166,11 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void onLoginSuccess(AuthSignInResult authSignInResult) {
         Log.d("LOGIN", "State: Success");
+
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> Log.d("AuthDemo", "User attributes = " + attributes.toString()),
+                error -> Log.d("AuthDemo", "Failed to fetch user attributes.", error)
+        );
 
         Amplify.Auth.fetchUserAttributes(
                 attributes -> setAttribute(attributes),

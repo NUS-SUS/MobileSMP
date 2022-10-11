@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class CurrentUser {
     private static String userName;
-    private static String userEmail = "test@gmail.com";
+    private static String userEmail = "test";
 
     public static String getIdToken() {
         return idToken;
@@ -66,43 +66,5 @@ public class CurrentUser {
         userEmail = userEmailInput;
     }
 
-
-    public void getUserTypeAPI(){
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        Call<InfluencerContent> call1 = apiInterface.doGetInfluenceResources(userEmail);
-        call1.enqueue(new Callback<InfluencerContent>() {
-            @Override
-            public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
-                Log.d("CurrentUser",response.code()+" => response code");
-                InfluencerContent influencerContent = response.body();
-                influencerContent.setValues();
-                type = "Influencer";
-            }
-
-            @Override
-            public void onFailure(Call<InfluencerContent> call, Throwable t) {
-                Log.d("CurrentUser","No Influencer");
-                call.cancel();
-            }
-        });
-
-        Call<CompanyResource> call2 = apiInterface.doGetCompanyResources(userEmail);
-        call2.enqueue(new Callback<CompanyResource>() {
-            @Override
-            public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
-                Log.d("CurrentUser",response.code()+" => response code");
-                CompanyResource companyResource = response.body();
-                type = "Company";
-            }
-
-            @Override
-            public void onFailure(Call<CompanyResource> call, Throwable t) {
-                Log.d("CurrentUser","No Company");
-                call.cancel();
-            }
-        });
-
-    }
 
 }

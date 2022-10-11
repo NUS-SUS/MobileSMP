@@ -4,16 +4,21 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentCampaignViewBinding;
 import com.example.mobilesmp.ui.discover.placeholder.CampaignContent;
+import com.example.mobilesmp.ui.profile.ProfileEditFragment;
+import com.example.retrofit.smp.CompanyResource;
+import com.example.retrofit.smp.InfluencerContent;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +70,7 @@ public class CampaignViewFragment extends Fragment {
         campaignContent = new CampaignContent();
         campaignContentItem = campaignContent.item_map.get(param1).getCampaignItem();
 
+
         return fragment;
     }
 
@@ -75,6 +81,7 @@ public class CampaignViewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -94,6 +101,13 @@ public class CampaignViewFragment extends Fragment {
         campaignEnd = (TextView) view.findViewById(R.id.textView18);
 
         setAllText();
+        binding.buttonApply.setOnClickListener(new View.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(View v) {
+                                                       Toast.makeText(getContext(),"Applied",Toast.LENGTH_SHORT).show();
+                                                   }
+                                               }
+        );
 
         // Inflate the layout for this fragment
         return view;

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.mobilesmp.APIClient;
 import com.example.mobilesmp.APIInterface;
@@ -111,6 +112,8 @@ public class FeedbackFragment extends Fragment {
                             boolean deleted = file.delete();
                             Log.d("FeedbackFramgent","Draft deleted");
                         }
+                        editText.getText().clear();
+                        Toast.makeText(getContext(),"Feedback submitted",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

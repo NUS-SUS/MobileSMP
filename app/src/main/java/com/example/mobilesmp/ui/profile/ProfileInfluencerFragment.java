@@ -332,6 +332,8 @@ public class ProfileInfluencerFragment extends Fragment {
                         public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
                             Log.d("InfluencerFragment","Save");
                             Toast.makeText(getContext(), "Profile Save", Toast.LENGTH_SHORT).show();
+                            NavHostFragment.findNavController(ProfileInfluencerFragment.this)
+                                    .navigate(R.id.action_profileInfluencerFragment_to_nav_home);
                         }
 
                         @Override

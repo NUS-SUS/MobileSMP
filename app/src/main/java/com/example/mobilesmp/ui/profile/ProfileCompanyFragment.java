@@ -75,6 +75,9 @@ public class ProfileCompanyFragment extends Fragment {
                     public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
                         Log.d("CompanyFragment","Save");
                         Toast.makeText(getContext(), "Profile Save", Toast.LENGTH_SHORT).show();
+
+                        NavHostFragment.findNavController(ProfileCompanyFragment.this)
+                                .navigate(R.id.action_profileCompanyFragment_to_nav_home);
                     }
 
                     @Override

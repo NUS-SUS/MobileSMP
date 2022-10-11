@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("LOGIN", "State: Success");
 
         Amplify.Auth.fetchUserAttributes(
+                attributes -> Log.d("AuthDemo", "User attributes = " + attributes.toString()),
+                error -> Log.d("AuthDemo", "Failed to fetch user attributes.", error)
+        );
+
+        Amplify.Auth.fetchUserAttributes(
                 attributes -> setAttribute(attributes),
                 error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
         );

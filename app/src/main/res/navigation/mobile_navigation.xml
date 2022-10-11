@@ -44,7 +44,11 @@
         android:id="@+id/profileCompanyFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileCompanyFragment"
         android:label="Company Profile Edit"
-        tools:layout="@layout/fragment_profile_company" />
+        tools:layout="@layout/fragment_profile_company" >
+        <action
+            android:id="@+id/action_profileCompanyFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/profileEditFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileEditFragment"
@@ -69,7 +73,11 @@
         android:id="@+id/profileInfluencerFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileInfluencerFragment"
         android:label="Influencer Profile Edit"
-        tools:layout="@layout/fragment_profile_influencer" />
+        tools:layout="@layout/fragment_profile_influencer" >
+        <action
+            android:id="@+id/action_profileInfluencerFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/profileViewFragment"
         android:name="com.example.mobilesmp.ui.profile.ProfileViewFragment"
