@@ -92,6 +92,10 @@ public class CompanyResource {
         return s;
     }
 
+    public void addFunds(String x){
+        c_campaignFunds += Integer.parseInt(x);
+    }
+
     public void setBodyValues() {
         unitNumber = c_unitNumber;
         companyName = c_companyName;

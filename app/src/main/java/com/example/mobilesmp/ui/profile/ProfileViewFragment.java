@@ -85,6 +85,23 @@ public class ProfileViewFragment extends Fragment {
         }
     };
 
+    private BroadcastReceiver aLBReceiver3 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            twoStringsList.clear();
+            CompanyResource companyResource = new CompanyResource();
+            String[] s = companyResource.getStringArray();
+            for (int i = 0; i < 10;i++){
+                if (coArray[i].equals("Campaign Funds")){
+                    Log.d("UpdateFunds",""+intent.getStringExtra("Amount"));
+                    companyResource.addFunds(intent.getStringExtra("Amount"));
+                }
+                twoStringsList.add(new TwoStrings(coArray[i],s[i]));
+            }
+            twoHorizontalTextViewsAdapter.notifyDataSetChanged();
+        }
+    };
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -99,6 +116,9 @@ public class ProfileViewFragment extends Fragment {
 
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(aLBReceiver2,
                 new IntentFilter("CompanyEvent"));
+
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(aLBReceiver3,
+                new IntentFilter("CompanyEventUpdate"));
 
         binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override

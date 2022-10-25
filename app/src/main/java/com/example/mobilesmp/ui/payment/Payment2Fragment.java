@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Environment;
@@ -142,6 +143,9 @@ public class Payment2Fragment extends Fragment {
                     }
                 });
                 if(haveResponse){
+                    Intent intent = new Intent("CompanyEventUpdate");
+                    intent.putExtra("Amount",CurrentPayment.getAmount());
+                    LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
                     TextView textViewPayment2 = (TextView) view.findViewById(R.id.textViewPayment2);
                     textViewPayment2.setText("Payment complete! Please click on SAVE RECEIPT to save a copy. Otherwise click on RETURN HOME to exit");
                     View progressBar1 = view.findViewById(R.id.progressBar1);
