@@ -92,10 +92,6 @@ public class ProfileViewFragment extends Fragment {
             CompanyResource companyResource = new CompanyResource();
             String[] s = companyResource.getStringArray();
             for (int i = 0; i < 10;i++){
-                if (coArray[i].equals("Campaign Funds")){
-                    Log.d("UpdateFunds",""+intent.getStringExtra("Amount"));
-                    companyResource.addFunds(intent.getStringExtra("Amount"));
-                }
                 twoStringsList.add(new TwoStrings(coArray[i],s[i]));
             }
             twoHorizontalTextViewsAdapter.notifyDataSetChanged();

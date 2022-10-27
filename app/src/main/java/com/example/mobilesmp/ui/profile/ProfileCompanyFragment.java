@@ -1,9 +1,11 @@
 package com.example.mobilesmp.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -20,6 +22,8 @@ import com.example.mobilesmp.APIInterface;
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentProfileCompanyBinding;
 import com.example.retrofit.smp.CompanyResource;
+import com.example.retrofit.smp.CurrentPayment;
+import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.InfluencerContent;
 
 import java.util.ArrayList;
@@ -75,7 +79,7 @@ public class ProfileCompanyFragment extends Fragment {
                     public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
                         Log.d("CompanyFragment","Save");
                         Toast.makeText(getContext(), "Profile Save", Toast.LENGTH_SHORT).show();
-
+                        updateCompanyProfile();
                         NavHostFragment.findNavController(ProfileCompanyFragment.this)
                                 .navigate(R.id.action_profileCompanyFragment_to_nav_home);
                     }
@@ -97,5 +101,27 @@ public class ProfileCompanyFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // calling Company profile function
+    private void updateCompanyProfile(){
+        CurrentUser currentUser = new CurrentUser();
+        Call<CompanyResource> call2 = apiInterface.doGetCompanyResources(currentUser.getUserEmail());
+        call2.enqueue(new Callback<CompanyResource>() {
+            @Override
+            public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
+                Log.d("UpdateCompany",response.code()+" => response code");
+                CompanyResource companyResource = response.body();
+                companyResource.setValues();
+                Intent intent = new Intent("CompanyEvent");
+                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+                currentUser.setType("Company");
+            }
+
+            @Override
+            public void onFailure(Call<CompanyResource> call, Throwable t) {
+                call.cancel();
+            }
+        });
     }
 }

@@ -34,6 +34,7 @@ import com.example.mobilesmp.NavHomeActivity;
 import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentPayment1Binding;
 import com.example.mobilesmp.databinding.FragmentPayment2Binding;
+import com.example.retrofit.smp.CompanyResource;
 import com.example.retrofit.smp.CurrentPayment;
 import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.PaymentContent;
@@ -143,9 +144,9 @@ public class Payment2Fragment extends Fragment {
                     }
                 });
                 if(haveResponse){
-                    Intent intent = new Intent("CompanyEventUpdate");
-                    intent.putExtra("Amount",CurrentPayment.getAmount());
-                    LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+                    // Call update company profile
+                    updateCompanyProfile();
+
                     TextView textViewPayment2 = (TextView) view.findViewById(R.id.textViewPayment2);
                     textViewPayment2.setText("Payment complete! Please click on SAVE RECEIPT to save a copy. Otherwise click on RETURN HOME to exit");
                     View progressBar1 = view.findViewById(R.id.progressBar1);
@@ -306,5 +307,27 @@ public class Payment2Fragment extends Fragment {
             Toast.makeText(getActivity(),"There is no app to load corresponding PDF",Toast.LENGTH_LONG).show();
 
         }
+    }
+
+    // calling Company profile function
+    private void updateCompanyProfile(){
+        CurrentUser currentUser = new CurrentUser();
+        Call<CompanyResource> call2 = apiInterface.doGetCompanyResources(currentUser.getUserEmail());
+        call2.enqueue(new Callback<CompanyResource>() {
+            @Override
+            public void onResponse(Call<CompanyResource> call, Response<CompanyResource> response) {
+                Log.d("UpdateCompany",response.code()+" => response code");
+                CompanyResource companyResource = response.body();
+                companyResource.setValues();
+                Intent intent = new Intent("CompanyEventUpdate");
+                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+                currentUser.setType("Company");
+            }
+
+            @Override
+            public void onFailure(Call<CompanyResource> call, Throwable t) {
+                call.cancel();
+            }
+        });
     }
 }

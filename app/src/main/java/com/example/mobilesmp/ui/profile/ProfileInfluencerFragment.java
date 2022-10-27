@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -32,6 +34,8 @@ import com.example.mobilesmp.R;
 import com.example.mobilesmp.databinding.FragmentProfileCompanyBinding;
 import com.example.mobilesmp.databinding.FragmentProfileInfluencerBinding;
 import com.example.retrofit.smp.ClassificationsResource;
+import com.example.retrofit.smp.CompanyResource;
+import com.example.retrofit.smp.CurrentUser;
 import com.example.retrofit.smp.FeedbackContent;
 import com.example.retrofit.smp.InfluencerContent;
 
@@ -332,6 +336,7 @@ public class ProfileInfluencerFragment extends Fragment {
                         public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
                             Log.d("InfluencerFragment","Save");
                             Toast.makeText(getContext(), "Profile Save", Toast.LENGTH_SHORT).show();
+                            updateInfluencerProfile();
                             NavHostFragment.findNavController(ProfileInfluencerFragment.this)
                                     .navigate(R.id.action_profileInfluencerFragment_to_nav_home);
                         }
@@ -374,6 +379,31 @@ public class ProfileInfluencerFragment extends Fragment {
             // Do something with the date chosen by the user
             date.setText(""+year+"/"+month+"/"+day);
         }
+    }
+
+    // calling Company profile function
+    private void updateInfluencerProfile(){
+        CurrentUser currentUser = new CurrentUser();
+
+        Call<InfluencerContent> call1 = apiInterface.doGetInfluenceResources(currentUser.getUserEmail());
+        CurrentUser finalCurrentUser = currentUser;
+        call1.enqueue(new Callback<InfluencerContent>() {
+            @Override
+            public void onResponse(Call<InfluencerContent> call, Response<InfluencerContent> response) {
+                Log.d("CurrentUser",response.code()+" => response code");
+                InfluencerContent influencerContent = response.body();
+                influencerContent.setValues();
+                Intent intent = new Intent("InfluencerEvent");
+                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
+                finalCurrentUser.setType("Influencer");
+            }
+
+            @Override
+            public void onFailure(Call<InfluencerContent> call, Throwable t) {
+                Log.d("CurrentUser","No Influencer");
+                call.cancel();
+            }
+        });
     }
 
 }
